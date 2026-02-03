@@ -131,7 +131,19 @@
         "#antler-banner .antler-banner__btn {background-color: transparent !important; color: #1a1a1a !important; border: 2px solid #1a1a1a;}",
         "#antler-banner {height: 600px;}"
       ],
-      "name": "Antler Banner",
+      "blocks": {
+        "slide_1": {
+          "type": "slide",
+          "settings": {
+            "banner_image": "shopify://shop_images/AntlersFrontCover3-1.jpg",
+            "heading": "Any Home,\nAny Vibe.",
+            "subtext": "An easy, natural accent for mantles, tables, and shelves.",
+            "button_label": "Shop Elk Antlers",
+            "button_link": "shopify://collections/elk-antlers"
+          }
+        }
+      },
+      "block_order": ["slide_1"],
       "settings": {}
     },
     "172869217229d03ff6": {
