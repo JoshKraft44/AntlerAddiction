@@ -1,0 +1,61 @@
+<section class="footer-links-section">
+  <div class="footer-links-grid">
+    <a href="/" class="footer-link">Home</a>
+    <a href="/collections/all" class="footer-link">Catalog</a>
+    <a href="/pages/contact" class="footer-link">Contact</a>
+    <a href="/pages/reviews" class="footer-link">Reviews</a>
+    <a href="/pages/about" class="footer-link">About</a>
+    <a href="/pages/faq" class="footer-link">FAQ</a>
+    <a href="/policies/privacy-policy" class="footer-link">Privacy Policy</a>
+    <a href="/policies/shipping-policy" class="footer-link">Shipping</a>
+    <a href="https://ca.pinterest.com/Antler_Addiction/" class="footer-link">Inspiration</a>
+  </div>
+
+  <style>
+    .footer-links-section {
+      background-color: #f7f2ee;
+      padding: 2.5rem 1rem;
+      text-align: center;
+      border-top: 1px solid #e0d6d0;
+    }
+
+    .footer-links-grid {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 2rem;
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0 1rem;
+    }
+
+    .footer-link {
+      font-size: 1.25rem;
+      font-weight: 400;
+      color: #6e4a56;
+      text-decoration: none;
+      transition: color 0.2s ease;
+    }
+
+    .footer-link:hover {
+      color: #4b2c33;
+      text-decoration: underline;
+    }
+
+    @media (max-width: 768px) {
+      .footer-links-grid {
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+      }
+    }
+  </style>
+</section>
+
+{% schema %}
+{
+  "name": "Custom Footer Nav",
+  "tag": "section",
+  "class": "section"
+}
+{% endschema %}

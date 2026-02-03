@@ -1,0 +1,276 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "image_banner": {
+      "type": "image-banner",
+      "blocks": {
+        "heading": {
+          "type": "heading",
+          "settings": {
+            "heading": "Naturally Shed. Sustainably Sourced.",
+            "heading_size": "h2"
+          }
+        },
+        "button": {
+          "type": "buttons",
+          "settings": {
+            "button_label_1": "Shop Antlers",
+            "button_link_1": "shopify://collections",
+            "button_style_secondary_1": false,
+            "button_label_2": "",
+            "button_link_2": "",
+            "button_style_secondary_2": true
+          }
+        }
+      },
+      "block_order": [
+        "heading",
+        "button"
+      ],
+      "custom_css": [
+        "@media screen and (min-width: 990px) {.banner__content {justify-content: flex-start; padding-left: 0rem; }}"
+      ],
+      "settings": {
+        "visibility_option": "desktop",
+        "image": "shopify://shop_images/AntlersFrontCoverFinal.jpg",
+        "image_overlay_opacity": 0,
+        "image_height": "large",
+        "desktop_content_position": "middle-center",
+        "show_text_box": false,
+        "desktop_content_alignment": "left",
+        "color_scheme": "scheme-52ac9f03-7ca5-4790-b433-483739752203",
+        "image_behavior": "none",
+        "mobile_content_alignment": "center",
+        "stack_images_on_mobile": false,
+        "show_text_below": false
+      }
+    },
+    "image_banner_PAwymw": {
+      "type": "image-banner",
+      "blocks": {
+        "heading_ANgUU6": {
+          "type": "heading",
+          "settings": {
+            "heading": "Sustainable. Wild. Natural.",
+            "heading_size": "h2"
+          }
+        },
+        "buttons_YKYhkq": {
+          "type": "buttons",
+          "settings": {
+            "button_label_1": "Shop Antlers",
+            "button_link_1": "shopify://collections",
+            "button_style_secondary_1": true,
+            "button_label_2": "",
+            "button_link_2": "",
+            "button_style_secondary_2": false
+          }
+        }
+      },
+      "block_order": [
+        "heading_ANgUU6",
+        "buttons_YKYhkq"
+      ],
+      "custom_css": [],
+      "settings": {
+        "visibility_option": "mobile",
+        "image": "shopify://shop_images/NewCoverMoose.jpg",
+        "image_2": "shopify://shop_images/NewCover2.jpg",
+        "image_overlay_opacity": 0,
+        "image_height": "large",
+        "desktop_content_position": "middle-center",
+        "show_text_box": false,
+        "desktop_content_alignment": "center",
+        "color_scheme": "inverse",
+        "image_behavior": "none",
+        "mobile_content_alignment": "center",
+        "stack_images_on_mobile": false,
+        "show_text_below": false
+      }
+    },
+    "featured_collection": {
+      "type": "featured-collection",
+      "custom_css": [],
+      "settings": {
+        "title": "Featured Products:",
+        "heading_size": "h2",
+        "description": "",
+        "show_description": false,
+        "description_style": "body",
+        "collection": "featured-products",
+        "products_to_show": 8,
+        "columns_desktop": 5,
+        "full_width": true,
+        "show_view_all": true,
+        "view_all_style": "solid",
+        "enable_desktop_slider": true,
+        "color_scheme": "background-1",
+        "image_ratio": "adapt",
+        "image_shape": "default",
+        "show_secondary_image": true,
+        "show_vendor": false,
+        "show_rating": false,
+        "enable_quick_add": false,
+        "columns_mobile": "2",
+        "swipe_on_mobile": false,
+        "padding_top": 36,
+        "padding_bottom": 24
+      }
+    },
+    "elk_section_ETkyK7": {
+      "type": "elk-section",
+      "custom_css": [
+        "#antler-banner .antler-banner__btn {background-color: transparent !important; color: #1a1a1a !important; border: 2px solid #1a1a1a;}",
+        "#antler-banner {height: 600px;}"
+      ],
+      "name": "Antler Banner",
+      "settings": {
+        "banner_image": "shopify://shop_images/AntlersFrontCover3-1.jpg",
+        "heading": "Any Home, Any Vibe",
+        "subtext": "An easy, natural accent for mantles, tables, and shelves.",
+        "button_label": "Shop Elk Antlers",
+        "button_link": "shopify://collections/elk-antlers"
+      }
+    },
+    "172869217229d03ff6": {
+      "type": "apps",
+      "blocks": {
+        "air_product_reviews_app_block_all_review_rBqT7Q": {
+          "type": "shopify://apps/air-product-reviews/blocks/app-block-all-review/c4e1e9ca-4d46-4e76-bc39-7e42417cb327",
+          "settings": {
+            "air_allReviewsBlock_heading": "All reviews page",
+            "air_allReviewsBlock_useSimpleSummary": false,
+            "air_allReviewsBlock_maxReview": 4,
+            "air_allReviewsBlock_summaryBgColor": "#f8f8f8",
+            "air_allReviewsBlock_bgColor": "#ffffff",
+            "air_allReviewsBlock_onlyMedia": false,
+            "air_allReviewsBlock_onlyPositive": false,
+            "air_allReviewsBlock_hideProductThumbnails": false,
+            "air_allReviewsBlock_selectedProduct": []
+          }
+        }
+      },
+      "block_order": [
+        "air_product_reviews_app_block_all_review_rBqT7Q"
+      ],
+      "settings": {
+        "include_margins": true
+      }
+    },
+    "172869336761de081a": {
+      "type": "apps",
+      "blocks": {
+        "reputon_etsy_reviews_carousel_widget_block_c4QAcr": {
+          "type": "shopify://apps/reputon-etsy-reviews/blocks/carousel-widget-block/8df530b9-db50-44f9-a43b-c93c6bac56a9",
+          "settings": {
+            "themeId": "light",
+            "font": "default",
+            "autoscroll": true,
+            "showRating": true,
+            "showProductPicture": true,
+            "showDate": true,
+            "showAvatar": false,
+            "fixedReviewsHeight": false
+          }
+        },
+        "air_product_reviews_app_block_all_review_YqWUGy": {
+          "type": "shopify://apps/air-product-reviews/blocks/app-block-all-review/c4e1e9ca-4d46-4e76-bc39-7e42417cb327",
+          "settings": {
+            "air_allReviewsBlock_heading": "All reviews page",
+            "air_allReviewsBlock_useSimpleSummary": false,
+            "air_allReviewsBlock_maxReview": 20,
+            "air_allReviewsBlock_summaryBgColor": "#f8f8f8",
+            "air_allReviewsBlock_bgColor": "#ffffff",
+            "air_allReviewsBlock_onlyMedia": false,
+            "air_allReviewsBlock_onlyPositive": false,
+            "air_allReviewsBlock_hideProductThumbnails": false,
+            "air_allReviewsBlock_selectedProduct": []
+          }
+        }
+      },
+      "block_order": [
+        "reputon_etsy_reviews_carousel_widget_block_c4QAcr",
+        "air_product_reviews_app_block_all_review_YqWUGy"
+      ],
+      "settings": {
+        "include_margins": true
+      }
+    },
+    "1728693535c830a9a9": {
+      "type": "apps",
+      "settings": {
+        "include_margins": true
+      }
+    },
+    "1740582047e3458e00": {
+      "type": "apps",
+      "blocks": {
+        "air_product_reviews_app_block_all_review_PmDeFi": {
+          "type": "shopify://apps/air-product-reviews/blocks/app-block-all-review/c4e1e9ca-4d46-4e76-bc39-7e42417cb327",
+          "settings": {
+            "air_allReviewsBlock_heading": "Recent Customer Reviews",
+            "air_allReviewsBlock_useSimpleSummary": false,
+            "air_allReviewsBlock_maxReview": 20,
+            "air_allReviewsBlock_summaryBgColor": "#f8f8f8",
+            "air_allReviewsBlock_bgColor": "#ffffff",
+            "air_allReviewsBlock_onlyMedia": false,
+            "air_allReviewsBlock_onlyPositive": false,
+            "air_allReviewsBlock_hideProductThumbnails": false,
+            "air_allReviewsBlock_selectedProduct": []
+          }
+        }
+      },
+      "block_order": [
+        "air_product_reviews_app_block_all_review_PmDeFi"
+      ],
+      "settings": {
+        "include_margins": true
+      }
+    },
+    "ducks_conservation_TbV9Me": {
+      "type": "ducks-conservation",
+      "settings": {}
+    },
+    "multicolumn2_TeqxXm": {
+      "type": "multicolumn2",
+      "name": "Simple Image Gallery",
+      "settings": {
+        "title": "Design ideas for your space",
+        "description": "<p>Antlers make amazing coffee table centerpieces, elegant shelf decor, unique wall hangings, stunning mantel displays, and beautiful natural accents for any room.</p>",
+        "image_1": "shopify://shop_images/finalSh3.jpg",
+        "image_2": "shopify://shop_images/finalSh.jpg",
+        "image_3": "shopify://shop_images/finalSh2.jpg",
+        "image_4": "shopify://shop_images/0749D6CD-C594-4D10-A951-FCAA2E7966A1.jpg",
+        "columns_desktop": 4,
+        "grid_gap": 20,
+        "grid_gap_mobile": 12,
+        "image_border_radius": 8,
+        "max_width": 1200,
+        "color_scheme": "",
+        "text_color": "#333333",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    }
+  },
+  "order": [
+    "image_banner",
+    "image_banner_PAwymw",
+    "featured_collection",
+    "elk_section_ETkyK7",
+    "172869217229d03ff6",
+    "172869336761de081a",
+    "1728693535c830a9a9",
+    "1740582047e3458e00",
+    "ducks_conservation_TbV9Me",
+    "multicolumn2_TeqxXm"
+  ]
+}

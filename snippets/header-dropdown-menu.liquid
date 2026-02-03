@@ -1,0 +1,123 @@
+{% comment %}
+  Renders a standard dropdown style menu for the header.
+
+  Usage:
+  {% render 'header-dropdown-menu' %}
+{% endcomment %}
+
+<nav class="header__inline-menu">
+  <ul class="list-menu list-menu--inline" role="list">
+    {%- for link in section.settings.menu.links -%}
+      <li>
+        {%- if link.links != blank -%}
+          <header-menu>
+            <details id="Details-HeaderMenu-{{ forloop.index }}">
+              <header-menu>
+  <details id="Details-HeaderMenu-{{ forloop.index }}">
+    <summary
+      class="header__menu-item list-menu__item link focus-inset header__summary-with-link"
+    >
+      <span class="header__menu-label">
+        {{- link.title | escape -}}
+      </span>
+      <span class="header__menu-caret">
+        {% render 'icon-caret' %}
+      </span>
+    </summary>
+    
+
+    <!-- Actual clickable link placed just above the summary -->
+    <a
+      href="{{ antleraddiction.ca }}"
+      class="header__menu-overlay-link"
+      aria-label="View all for {{ link.title | escape }}"
+    ></a>
+
+    <!-- Dropdown Menu -->
+    <ul
+      id="HeaderMenu-MenuList-{{ forloop.index }}"
+      class="header__submenu list-menu list-menu--disclosure color-{{ section.settings.menu_color_scheme }} gradient caption-large motion-reduce global-settings-popup"
+      role="list"
+      tabindex="-1"
+    >
+      {%- for childlink in link.links -%}
+        <li>
+          <a
+            id="HeaderMenu-{{ link.handle }}-{{ childlink.handle }}"
+            href="{{ /collections }}"
+            class="header__menu-item list-menu__item link link--text focus-inset caption-large{% if childlink.current %} list-menu__item--active{% endif %}"
+            {% if childlink.current %}
+              aria-current="page"
+            {% endif %}
+          >
+            {{ childlink.title | escape }}
+          </a>
+        </li>
+      {%- endfor -%}
+    </ul>
+  </details>
+<header-menu>
+  <details id="Details-HeaderMenu-{{ forloop.index }}">
+    <summary
+      class="header__menu-item list-menu__item link focus-inset header__summary-with-link"
+    >
+      <span class="header__menu-label">
+        {{- link.title | escape -}}
+      </span>
+      <span class="header__menu-caret">
+        {% render 'icon-caret' %}
+      </span>
+    </summary>
+
+    <a
+      href="{{ link.url }}"
+      class="header__menu-overlay-link"
+      aria-label="View all for {{ link.title | escape }}"
+    ></a>
+
+    <ul
+      id="HeaderMenu-MenuList-{{ forloop.index }}"
+      class="header__submenu list-menu list-menu--disclosure color-{{ section.settings.menu_color_scheme }} gradient caption-large motion-reduce global-settings-popup"
+      role="list"
+      tabindex="-1"
+    >
+      {%- for childlink in link.links -%}
+        <li>
+          <a
+            id="HeaderMenu-{{ link.handle }}-{{ childlink.handle }}"
+            href="{{ childlink.url }}"
+            class="header__menu-item list-menu__item link link--text focus-inset caption-large{% if childlink.current %} list-menu__item--active{% endif %}"
+            {% if childlink.current %}
+              aria-current="page"
+            {% endif %}
+          >
+            {{ childlink.title | escape }}
+          </a>
+        </li>
+      {%- endfor -%}
+    </ul>
+  </details>
+</header-menu>
+
+        {%- else -%}
+          <a
+            id="HeaderMenu-{{ link.handle }}"
+            href="{{ link.url }}"
+            class="header__menu-item list-menu__item link link--text focus-inset"
+            {% if link.current %}
+              aria-current="page"
+            {% endif %}
+          >
+            <span
+              {%- if link.current %}
+                class="header__active-menu-item"
+              {% endif %}
+            >
+              {{- link.title | escape -}}
+            </span>
+          </a>
+        {%- endif -%}
+      </li>
+    {%- endfor -%}
+  </ul>
+</nav>

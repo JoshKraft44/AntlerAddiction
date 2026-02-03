@@ -1,0 +1,60 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "disabled": true,
+      "settings": {
+        "padding_top": 28,
+        "padding_bottom": 28
+      }
+    },
+    "17286937103a4aada0": {
+      "type": "apps",
+      "blocks": {
+        "air_product_reviews_app_block_all_review_AEFigk": {
+          "type": "shopify://apps/air-product-reviews/blocks/app-block-all-review/c4e1e9ca-4d46-4e76-bc39-7e42417cb327",
+          "settings": {
+            "air_allReviewsBlock_heading": "All reviews page",
+            "air_allReviewsBlock_useSimpleSummary": false,
+            "air_allReviewsBlock_maxReview": 20,
+            "air_allReviewsBlock_summaryBgColor": "#F8F8F8",
+            "air_allReviewsBlock_bgColor": "#FFFFFF",
+            "air_allReviewsBlock_onlyMedia": false,
+            "air_allReviewsBlock_onlyPositive": false,
+            "air_allReviewsBlock_hideProductThumbnails": false,
+            "air_allReviewsBlock_selectedProduct": []
+          }
+        },
+        "reputon_etsy_reviews_list_widget_block_cj7kYN": {
+          "type": "shopify://apps/reputon-etsy-reviews/blocks/list-widget-block/8df530b9-db50-44f9-a43b-c93c6bac56a9",
+          "settings": {
+            "themeId": "light",
+            "showProductPicture": true,
+            "showDate": true,
+            "showAvatar": false
+          }
+        }
+      },
+      "block_order": [
+        "air_product_reviews_app_block_all_review_AEFigk",
+        "reputon_etsy_reviews_list_widget_block_cj7kYN"
+      ],
+      "settings": {
+        "include_margins": true
+      }
+    }
+  },
+  "order": [
+    "main",
+    "17286937103a4aada0"
+  ]
+}

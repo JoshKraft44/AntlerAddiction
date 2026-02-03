@@ -1,0 +1,63 @@
+{%- style -%}
+  .section-{{ section.id }} {
+    background-color: white;
+    color: #111;
+    padding: 30px 20px 16px 20px;
+    text-align: center;
+  }
+
+  .ducks-logo {
+    max-width: 320px;
+    height: auto;
+    margin: 32px auto 0 auto;
+    display: block;
+  }
+
+  .conservation-content {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+
+  .conservation-heading {
+    font-size: 3.6rem;     /* Big and proud */
+    font-weight: 800;
+    margin-bottom: 24px;
+    letter-spacing: -0.5px;
+  }
+
+  .conservation-text {
+    font-size: 1.9rem;    /* Significantly bigger */
+    line-height: 1.85;
+    font-weight: 400;
+  }
+{%- endstyle -%}
+
+
+
+<div class="section-{{ section.id }}">
+  <div class="conservation-content">
+    <img 
+      src="{{ 'ducks2.png' | asset_url }}" 
+      alt="Ducks Unlimited Canada Logo" 
+      class="ducks-logo"
+    />
+    <h2 class="conservation-heading">Giving Back to Conservation</h2>
+    <p class="conservation-text">
+      We are proud to partner with <strong>Ducks Unlimited Canada</strong>, supporting their mission to conserve wetlands and protect wildlife. A portion of the proceeds from your purchase goes directly to preserving natural habitats across Canada. Help us to protect these places for generations to come.
+    </p>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "ducks-unlimited",
+  "class": "section",
+  "settings": [],
+  "presets": [
+    {
+      "name": "ducks-unlimited"
+    }
+  ]
+}
+{% endschema %}

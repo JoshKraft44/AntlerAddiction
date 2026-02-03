@@ -1,0 +1,230 @@
+{{ 'component-card.css' | asset_url | stylesheet_tag }}
+{{ 'section-collection-list.css' | asset_url | stylesheet_tag }}
+
+<style>
+/* Reduce card size directly using max-width */
+.collection-list__item {
+  max-width: 240px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.card--collection {
+  width: 100%;
+}
+
+.collection-list.grid {
+  justify-content: center;
+  gap: 2rem;
+}
+
+@media (max-width: 749px) {
+  .collection-list.grid {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+    gap: 1rem !important;
+    padding: 0 !important;
+    max-width: 100% !important;
+  }
+
+  .collection-list__item {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    flex: none !important;
+  }
+
+  .card--collection {
+    width: 100% !important;
+    height: auto !important;
+    transform: none !important;
+  }
+
+  .card__media {
+    width: 100% !important;
+    height: auto !important;
+    aspect-ratio: 1 / 1 !important;
+  }
+
+  .card__media img {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+  }
+}
+.collection-heading {
+  font-size: 2.2rem;
+  font-family: 'Playfair Display', serif;
+  font-weight: 900;
+  color: #4b2c33;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 2.5rem;
+  border-bottom: 2px solid #c2a974;
+  padding-bottom: 6px;
+
+  display: table;       
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+
+@media (min-width: 750px) {
+  .collection-heading {
+    font-size: 3rem;
+  }
+}
+
+  </style>
+
+
+{% # Collections page: Displays collections based on collections in shopify admin. Image is name_of_collection.jpg %}
+
+<div class="collections-full-width">
+<h1 class="collection-heading{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}">
+  Explore Our Collections
+</h1>
+  {%- liquid
+    case section.settings.sort
+      when 'products_high', 'products_low'
+        assign collections = collections | sort: 'all_products_count'
+      when 'date', 'date_reversed'
+        assign collections = collections | sort: 'published_at'
+    endcase
+
+    if section.settings.sort == 'products_high' or section.settings.sort == 'date_reversed' or section.settings.sort == 'alphabetical_reversed'
+      assign collections = collections | reverse
+    endif
+
+    assign moduloResult = 28 | modulo: section.settings.columns_desktop
+    assign paginate_by = 30
+    if moduloResult == 0
+      assign paginate_by = 28
+    endif
+  -%}
+  {%- paginate collections by paginate_by -%}
+<ul class="collection-list grid grid--4-col-desktop grid--2-col-tablet-down" role="list">
+      {%- for collection in collections -%}
+          {%- assign title_lc = collection.title | downcase -%}
+    {%- if title_lc == 'other' or collection.handle == 'other' -%}
+      {%- continue -%}
+    {%- endif -%}
+        <li
+          class="collection-list__item grid__item{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
+          {% if settings.animations_reveal_on_scroll %}
+            data-cascade
+            style="--animation-order: {{ forloop.index }};"
+          {% endif %}
+        >        
+      {% assign custom_image = collection.handle | append: '.jpg' | asset_url %}
+      
+      {% render 'card-collection',
+        card_collection: collection,
+        media: custom_image,
+        media_aspect_ratio: section.settings.image_ratio,
+        columns: 3
+      %}
+
+        </li>
+      {%- endfor -%}
+    </ul>
+    {% render 'pagination', paginate: paginate %}
+  {%- endpaginate -%}
+</div>
+{% schema %}
+{
+  "name": "t:sections.main-list-collections.name",
+  "class": "section",
+  "settings": [
+    {
+      "type": "inline_richtext",
+      "id": "title",
+      "label": "t:sections.main-list-collections.settings.title.label",
+      "default": "Collections"
+    },
+    {
+      "type": "select",
+      "id": "sort",
+      "options": [
+        {
+          "value": "alphabetical",
+          "label": "t:sections.main-list-collections.settings.sort.options__1.label"
+        },
+        {
+          "value": "alphabetical_reversed",
+          "label": "t:sections.main-list-collections.settings.sort.options__2.label"
+        },
+        {
+          "value": "date_reversed",
+          "label": "t:sections.main-list-collections.settings.sort.options__3.label"
+        },
+        {
+          "value": "date",
+          "label": "t:sections.main-list-collections.settings.sort.options__4.label"
+        },
+        {
+          "value": "products_high",
+          "label": "t:sections.main-list-collections.settings.sort.options__5.label"
+        },
+        {
+          "value": "products_low",
+          "label": "t:sections.main-list-collections.settings.sort.options__6.label"
+        }
+      ],
+      "default": "alphabetical",
+      "label": "t:sections.main-list-collections.settings.sort.label"
+    },
+    {
+      "type": "select",
+      "id": "image_ratio",
+      "options": [
+        {
+          "value": "adapt",
+          "label": "t:sections.main-list-collections.settings.image_ratio.options__1.label"
+        },
+        {
+          "value": "portrait",
+          "label": "t:sections.main-list-collections.settings.image_ratio.options__2.label"
+        },
+        {
+          "value": "square",
+          "label": "t:sections.main-list-collections.settings.image_ratio.options__3.label"
+        }
+      ],
+      "default": "adapt",
+      "label": "t:sections.main-list-collections.settings.image_ratio.label",
+      "info": "t:sections.main-list-collections.settings.image_ratio.info"
+    },
+    {
+      "type": "range",
+      "id": "columns_desktop",
+      "min": 1,
+      "max": 5,
+      "step": 1,
+      "default": 3,
+      "label": "t:sections.main-list-collections.settings.columns_desktop.label"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.main-list-collections.settings.header_mobile.content"
+    },
+    {
+      "type": "select",
+      "id": "columns_mobile",
+      "options": [
+        {
+          "value": "1",
+          "label": "t:sections.main-list-collections.settings.columns_mobile.options__1.label"
+        },
+        {
+          "value": "2",
+          "label": "t:sections.main-list-collections.settings.columns_mobile.options__2.label"
+        }
+      ],
+      "default": "2",
+      "label": "t:sections.main-list-collections.settings.columns_mobile.label"
+    }
+  ]
+}
+{% endschema %}
