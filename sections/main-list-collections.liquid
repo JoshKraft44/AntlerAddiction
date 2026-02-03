@@ -117,7 +117,7 @@
             style="--animation-order: {{ forloop.index }};"
           {% endif %}
         >        
-      {% assign custom_image = collection.handle | append: '.jpg' | asset_url %}
+      {% assign custom_image = collection.handle | append: '.jpg' | file_url %}
       
       {% render 'card-collection',
         card_collection: collection,
