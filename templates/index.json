@@ -46,7 +46,7 @@
         "desktop_content_position": "middle-center",
         "show_text_box": false,
         "desktop_content_alignment": "left",
-        "color_scheme": "scheme-52ac9f03-7ca5-4790-b433-483739752203",
+        "color_scheme": "accent-2",
         "image_behavior": "none",
         "mobile_content_alignment": "center",
         "stack_images_on_mobile": false,
@@ -132,13 +132,7 @@
         "#antler-banner {height: 600px;}"
       ],
       "name": "Antler Banner",
-      "settings": {
-        "banner_image": "shopify://shop_images/AntlersFrontCover3-1.JPG",
-        "heading": "Any Home, Any Vibe",
-        "subtext": "An easy, natural accent for mantles, tables, and shelves.",
-        "button_label": "Shop Elk Antlers",
-        "button_link": "shopify://collections/elk-antlers"
-      }
+      "settings": {}
     },
     "172869217229d03ff6": {
       "type": "apps",
