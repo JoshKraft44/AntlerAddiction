@@ -127,10 +127,6 @@
     },
     "elk_section_ETkyK7": {
       "type": "elk-section",
-      "custom_css": [
-        "#antler-banner .antler-banner__btn {background-color: transparent !important; color: #1a1a1a !important; border: 2px solid #1a1a1a;}",
-        "#antler-banner {height: 600px;}"
-      ],
       "blocks": {
         "slide_1": {
           "type": "slide",
@@ -143,18 +139,14 @@
           }
         }
       },
-      "block_order": ["slide_1"],
+      "block_order": [
+        "slide_1"
+      ],
+      "custom_css": [
+        "#antler-banner .antler-banner__btn {background-color: transparent !important; color: #1a1a1a !important; border: 2px solid #1a1a1a;}",
+        "#antler-banner {height: 600px;}"
+      ],
       "settings": {}
-    },
-    "whitetail_section_abc123": {
-      "type": "whitetail-section",
-      "settings": {
-        "banner_image": "shopify://shop_images/FrontPageBlock2.jpg",
-        "heading": "Minimalist or Maximalist,\nyou decide.",
-        "subtext": "From subtle accents to statement pieces, find your perfect match.",
-        "button_label": "Shop Whitetail Antlers",
-        "button_link": "shopify://collections/whitetail-deer-antlers"
-      }
     },
     "172869217229d03ff6": {
       "type": "apps",
