@@ -316,7 +316,7 @@
   @media (max-width: 768px) {
     #antler-overlay-banner-{{ section.id }} {
       height: auto;
-      aspect-ratio: {{ section.settings.mobile_aspect_ratio }};
+      aspect-ratio: {{ section.settings.mobile_aspect_ratio | replace: '-', ' / ' }};
     }
     #antler-overlay-banner-{{ section.id }} .antler-overlay-banner__content {
       padding: var(--mobile-pad-top) var(--mobile-pad-right) var(--mobile-pad-bottom) var(--mobile-pad-left);
@@ -433,14 +433,14 @@
       "id": "mobile_aspect_ratio",
       "label": "Mobile aspect ratio",
       "options": [
-        { "value": "16 / 9", "label": "16:9 (landscape)" },
-        { "value": "3 / 2", "label": "3:2 (landscape)" },
-        { "value": "4 / 3", "label": "4:3 (landscape)" },
-        { "value": "1 / 1", "label": "1:1 (square)" },
-        { "value": "3 / 4", "label": "3:4 (portrait)" },
-        { "value": "2 / 3", "label": "2:3 (tall portrait)" }
+        { "value": "16-9", "label": "16:9 (landscape)" },
+        { "value": "3-2", "label": "3:2 (landscape)" },
+        { "value": "4-3", "label": "4:3 (landscape)" },
+        { "value": "1-1", "label": "1:1 (square)" },
+        { "value": "3-4", "label": "3:4 (portrait)" },
+        { "value": "2-3", "label": "2:3 (tall portrait)" }
       ],
-      "default": "2 / 3"
+      "default": "2-3"
     }
   ],
   "max_blocks": 5,
