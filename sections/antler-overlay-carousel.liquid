@@ -1,0 +1,466 @@
+<section id="antler-overlay-banner-{{ section.id }}" class="antler-overlay-banner">
+  <div class="antler-overlay-banner__carousel">
+    {% for block in section.blocks %}
+      <div class="antler-overlay-banner__slide" data-slide-index="{{ forloop.index0 }}" {{ block.shopify_attributes }}>
+        <div class="antler-overlay-banner__image-wrap">
+          {% if block.settings.banner_image %}
+            {{ block.settings.banner_image
+              | image_url: width: 2400
+              | image_tag:
+                class: 'antler-overlay-banner__image',
+                loading: 'lazy',
+                widths: '600, 900, 1200, 1600, 2400',
+                sizes: '100vw'
+            }}
+          {% else %}
+            <div class="antler-overlay-banner__placeholder"></div>
+          {% endif %}
+        </div>
+
+        <div class="antler-overlay-banner__overlay" style="background: rgba(0, 0, 0, {{ block.settings.overlay_opacity | divided_by: 100.0 }});">
+          <div class="antler-overlay-banner__content antler-overlay-banner__content--{{ block.settings.text_position }}">
+            {% if block.settings.heading != blank %}
+              <h2 class="antler-overlay-banner__heading">
+                {{ block.settings.heading | newline_to_br }}
+              </h2>
+            {% endif %}
+            {% if block.settings.subtext != blank %}
+              <p class="antler-overlay-banner__subtext">
+                {{ block.settings.subtext }}
+              </p>
+            {% endif %}
+            {% if block.settings.button_label != blank and block.settings.button_link != blank %}
+              <a href="{{ block.settings.button_link }}" class="antler-overlay-banner__btn">
+                {{ block.settings.button_label }}
+              </a>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+
+  {% if section.blocks.size > 1 %}
+    <button class="antler-overlay-banner__nav antler-overlay-banner__nav--prev" aria-label="Previous slide">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <polyline points="15 18 9 12 15 6"></polyline>
+      </svg>
+    </button>
+    <button class="antler-overlay-banner__nav antler-overlay-banner__nav--next" aria-label="Next slide">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <polyline points="9 18 15 12 9 6"></polyline>
+      </svg>
+    </button>
+
+    <div class="antler-overlay-banner__dots">
+      {% for block in section.blocks %}
+        <button class="antler-overlay-banner__dot{% if forloop.first %} active{% endif %}"
+                data-slide="{{ forloop.index0 }}"
+                aria-label="Go to slide {{ forloop.index }}">
+        </button>
+      {% endfor %}
+    </div>
+  {% endif %}
+</section>
+
+<style>
+  #antler-overlay-banner-{{ section.id }} {
+    position: relative;
+    width: 100%;
+    height: {{ section.settings.desktop_height }}px;
+    overflow: hidden;
+  }
+
+  #antler-overlay-banner-{{ section.id }} .antler-overlay-banner__carousel {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.5s ease-in-out;
+  }
+
+  #antler-overlay-banner-{{ section.id }} .antler-overlay-banner__slide {
+    position: relative;
+    min-width: 100%;
+    height: 100%;
+  }
+
+  /* ---- FULL-BLEED IMAGE ---- */
+  #antler-overlay-banner-{{ section.id }} .antler-overlay-banner__image-wrap {
+    position: absolute;
+    inset: 0;
+  }
+
+  #antler-overlay-banner-{{ section.id }} .antler-overlay-banner__image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+  }
+
+  #antler-overlay-banner-{{ section.id }} .antler-overlay-banner__placeholder {
+    width: 100%;
+    height: 100%;
+    background-color: #d4cfc9;
+  }
+
+  /* ---- OVERLAY ---- */
+  #antler-overlay-banner-{{ section.id }} .antler-overlay-banner__overlay {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    z-index: 2;
+  }
+
+  /* ---- CONTENT ---- */
+  #antler-overlay-banner-{{ section.id }} .antler-overlay-banner__content {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    padding: 48px 56px;
+    width: 100%;
+  }
+
+  /* Text positions */
+  #antler-overlay-banner-{{ section.id }} .antler-overlay-banner__content--bottom-left {
+    justify-content: flex-end;
+    align-items: flex-start;
+    text-align: left;
+  }
+
+  #antler-overlay-banner-{{ section.id }} .antler-overlay-banner__content--bottom-center {
+    justify-content: flex-end;
+    align-items: center;
+    text-align: center;
+  }
+
+  #antler-overlay-banner-{{ section.id }} .antler-overlay-banner__content--bottom-right {
+    justify-content: flex-end;
+    align-items: flex-end;
+    text-align: right;
+  }
+
+  #antler-overlay-banner-{{ section.id }} .antler-overlay-banner__content--center-left {
+    justify-content: center;
+    align-items: flex-start;
+    text-align: left;
+  }
+
+  #antler-overlay-banner-{{ section.id }} .antler-overlay-banner__content--center-center {
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  }
+
+  #antler-overlay-banner-{{ section.id }} .antler-overlay-banner__content--center-right {
+    justify-content: center;
+    align-items: flex-end;
+    text-align: right;
+  }
+
+  #antler-overlay-banner-{{ section.id }} .antler-overlay-banner__content--top-left {
+    justify-content: flex-start;
+    align-items: flex-start;
+    text-align: left;
+  }
+
+  #antler-overlay-banner-{{ section.id }} .antler-overlay-banner__content--top-center {
+    justify-content: flex-start;
+    align-items: center;
+    text-align: center;
+  }
+
+  #antler-overlay-banner-{{ section.id }} .antler-overlay-banner__content--top-right {
+    justify-content: flex-start;
+    align-items: flex-end;
+    text-align: right;
+  }
+
+  #antler-overlay-banner-{{ section.id }} .antler-overlay-banner__heading {
+    font-size: 28px;
+    font-weight: 600;
+    line-height: 1.2;
+    color: #ffffff;
+    margin: 0;
+  }
+
+  #antler-overlay-banner-{{ section.id }} .antler-overlay-banner__subtext {
+    font-size: 14px;
+    line-height: 1.55;
+    color: rgba(255, 255, 255, 0.85);
+    margin: 0;
+  }
+
+  #antler-overlay-banner-{{ section.id }} .antler-overlay-banner__btn {
+    display: inline-block;
+    margin-top: 4px;
+    padding: 12px 28px;
+    background-color: transparent;
+    color: #ffffff;
+    border: 2px solid #ffffff;
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    text-decoration: none;
+    border-radius: 4px;
+    transition: background-color 0.2s ease, color 0.2s ease;
+  }
+
+  #antler-overlay-banner-{{ section.id }} .antler-overlay-banner__btn:hover {
+    background-color: #ffffff;
+    color: #1a1a1a;
+  }
+
+  /* ---- NAVIGATION ARROWS ---- */
+  #antler-overlay-banner-{{ section.id }} .antler-overlay-banner__nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 48px;
+    height: 48px;
+    background-color: rgba(255, 255, 255, 0.9);
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+    transition: background-color 0.2s ease;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  }
+
+  #antler-overlay-banner-{{ section.id }} .antler-overlay-banner__nav:hover {
+    background-color: rgba(255, 255, 255, 1);
+  }
+
+  #antler-overlay-banner-{{ section.id }} .antler-overlay-banner__nav--prev {
+    left: 20px;
+  }
+
+  #antler-overlay-banner-{{ section.id }} .antler-overlay-banner__nav--next {
+    right: 20px;
+  }
+
+  #antler-overlay-banner-{{ section.id }} .antler-overlay-banner__nav svg {
+    color: #1a1a1a;
+  }
+
+  /* ---- DOTS INDICATOR ---- */
+  #antler-overlay-banner-{{ section.id }} .antler-overlay-banner__dots {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 8px;
+    z-index: 10;
+  }
+
+  #antler-overlay-banner-{{ section.id }} .antler-overlay-banner__dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.5);
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    transition: background-color 0.3s ease;
+  }
+
+  #antler-overlay-banner-{{ section.id }} .antler-overlay-banner__dot.active {
+    background-color: rgba(255, 255, 255, 0.95);
+  }
+
+  /* ---- TABLET ---- */
+  @media (max-width: 1024px) {
+    #antler-overlay-banner-{{ section.id }} {
+      height: {{ section.settings.tablet_height }}px;
+    }
+    #antler-overlay-banner-{{ section.id }} .antler-overlay-banner__content {
+      padding: 36px 40px;
+    }
+    #antler-overlay-banner-{{ section.id }} .antler-overlay-banner__nav {
+      width: 40px;
+      height: 40px;
+    }
+    #antler-overlay-banner-{{ section.id }} .antler-overlay-banner__nav--prev {
+      left: 12px;
+    }
+    #antler-overlay-banner-{{ section.id }} .antler-overlay-banner__nav--next {
+      right: 12px;
+    }
+  }
+
+  /* ---- MOBILE ---- */
+  @media (max-width: 768px) {
+    #antler-overlay-banner-{{ section.id }} {
+      height: {{ section.settings.mobile_height }}px;
+    }
+    #antler-overlay-banner-{{ section.id }} .antler-overlay-banner__content {
+      padding: 24px 20px;
+    }
+    #antler-overlay-banner-{{ section.id }} .antler-overlay-banner__heading {
+      font-size: 22px;
+    }
+    #antler-overlay-banner-{{ section.id }} .antler-overlay-banner__nav {
+      width: 36px;
+      height: 36px;
+    }
+    #antler-overlay-banner-{{ section.id }} .antler-overlay-banner__nav--prev {
+      left: 8px;
+    }
+    #antler-overlay-banner-{{ section.id }} .antler-overlay-banner__nav--next {
+      right: 8px;
+    }
+  }
+</style>
+
+<script>
+  (function() {
+    const section = document.getElementById('antler-overlay-banner-{{ section.id }}');
+    if (!section) return;
+
+    const carousel = section.querySelector('.antler-overlay-banner__carousel');
+    const slides = section.querySelectorAll('.antler-overlay-banner__slide');
+    const prevBtn = section.querySelector('.antler-overlay-banner__nav--prev');
+    const nextBtn = section.querySelector('.antler-overlay-banner__nav--next');
+    const dots = section.querySelectorAll('.antler-overlay-banner__dot');
+
+    if (!carousel || slides.length <= 1) return;
+
+    let currentIndex = 0;
+
+    function goToSlide(index) {
+      currentIndex = (index + slides.length) % slides.length;
+      carousel.style.transform = 'translateX(-' + (currentIndex * 100) + '%)';
+
+      dots.forEach(function(dot, i) {
+        dot.classList.toggle('active', i === currentIndex);
+      });
+    }
+
+    if (prevBtn) {
+      prevBtn.addEventListener('click', function() { goToSlide(currentIndex - 1); });
+    }
+
+    if (nextBtn) {
+      nextBtn.addEventListener('click', function() { goToSlide(currentIndex + 1); });
+    }
+
+    dots.forEach(function(dot, index) {
+      dot.addEventListener('click', function() { goToSlide(index); });
+    });
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "Antler Overlay Carousel",
+  "settings": [
+    {
+      "type": "range",
+      "id": "desktop_height",
+      "min": 300,
+      "max": 800,
+      "step": 10,
+      "unit": "px",
+      "label": "Desktop height",
+      "default": 600
+    },
+    {
+      "type": "range",
+      "id": "tablet_height",
+      "min": 250,
+      "max": 600,
+      "step": 10,
+      "unit": "px",
+      "label": "Tablet height",
+      "default": 450
+    },
+    {
+      "type": "range",
+      "id": "mobile_height",
+      "min": 200,
+      "max": 500,
+      "step": 10,
+      "unit": "px",
+      "label": "Mobile height",
+      "default": 350
+    }
+  ],
+  "max_blocks": 5,
+  "blocks": [
+    {
+      "type": "slide",
+      "name": "Slide",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "banner_image",
+          "label": "Banner image"
+        },
+        {
+          "type": "range",
+          "id": "overlay_opacity",
+          "min": 0,
+          "max": 80,
+          "step": 5,
+          "unit": "%",
+          "label": "Image overlay darkness",
+          "default": 25
+        },
+        {
+          "type": "select",
+          "id": "text_position",
+          "label": "Text position",
+          "options": [
+            { "value": "top-left", "label": "Top left" },
+            { "value": "top-center", "label": "Top center" },
+            { "value": "top-right", "label": "Top right" },
+            { "value": "center-left", "label": "Center left" },
+            { "value": "center-center", "label": "Center" },
+            { "value": "center-right", "label": "Center right" },
+            { "value": "bottom-left", "label": "Bottom left" },
+            { "value": "bottom-center", "label": "Bottom center" },
+            { "value": "bottom-right", "label": "Bottom right" }
+          ],
+          "default": "center-left"
+        },
+        {
+          "type": "textarea",
+          "id": "heading",
+          "label": "Heading (use Shift+Enter for line breaks)",
+          "default": "Your Heading Here"
+        },
+        {
+          "type": "textarea",
+          "id": "subtext",
+          "label": "Description"
+        },
+        {
+          "type": "text",
+          "id": "button_label",
+          "label": "Button label",
+          "default": "Shop Now"
+        },
+        {
+          "type": "url",
+          "id": "button_link",
+          "label": "Button link"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Antler Overlay Carousel",
+      "blocks": [
+        {
+          "type": "slide"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
