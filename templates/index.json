@@ -128,16 +128,6 @@
     "elk_section_ETkyK7": {
       "type": "elk-section",
       "blocks": {
-        "slide_VzVCjU": {
-          "type": "slide",
-          "settings": {
-            "banner_image": "shopify://shop_images/FrontPageBlock2.jpg",
-            "heading": "Minimalist, \nor Maximalist.",
-            "subtext": "From subtle accent items to statement pieces, find your perfect match.",
-            "button_label": "Shop Whitetail Antlers",
-            "button_link": "shopify://collections/whitetail-deer-antlers"
-          }
-        },
         "slide_1": {
           "type": "slide",
           "settings": {
@@ -150,7 +140,6 @@
         }
       },
       "block_order": [
-        "slide_VzVCjU",
         "slide_1"
       ],
       "custom_css": [
