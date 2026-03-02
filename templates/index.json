@@ -243,17 +243,13 @@
         "include_margins": true
       }
     },
-    "ducks_conservation_TbV9Me": {
-      "type": "ducks-conservation",
-      "settings": {}
-    },
     "antler_overlay_carousel_YDeBXr": {
       "type": "antler-overlay-carousel",
       "blocks": {
         "slide_kY9dri": {
           "type": "slide",
           "settings": {
-            "banner_image": "shopify://shop_images/Gemini_Generated_Image_4rngco4rngco4rng-2.jpg",
+            "banner_image": "shopify://shop_images/Gemini_Generated_Image_4rngco4rngco4rng-3.jpg",
             "mobile_image": "shopify://shop_images/Gemini_Generated_Image_9kam5j9kam5j9kam-2.jpg",
             "overlay_opacity": 0,
             "text_position": "center-left",
@@ -282,6 +278,10 @@
         "tablet_aspect_ratio": "3-2",
         "mobile_aspect_ratio": "3-4"
       }
+    },
+    "ducks_conservation_TbV9Me": {
+      "type": "ducks-conservation",
+      "settings": {}
     },
     "multicolumn2_TeqxXm": {
       "type": "multicolumn2",
