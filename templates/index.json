@@ -148,31 +148,6 @@
       ],
       "settings": {}
     },
-    "172869217229d03ff6": {
-      "type": "apps",
-      "blocks": {
-        "air_product_reviews_app_block_all_review_rBqT7Q": {
-          "type": "shopify://apps/air-product-reviews/blocks/app-block-all-review/c4e1e9ca-4d46-4e76-bc39-7e42417cb327",
-          "settings": {
-            "air_allReviewsBlock_heading": "All reviews page",
-            "air_allReviewsBlock_useSimpleSummary": false,
-            "air_allReviewsBlock_maxReview": 4,
-            "air_allReviewsBlock_summaryBgColor": "#f8f8f8",
-            "air_allReviewsBlock_bgColor": "#ffffff",
-            "air_allReviewsBlock_onlyMedia": false,
-            "air_allReviewsBlock_onlyPositive": false,
-            "air_allReviewsBlock_hideProductThumbnails": false,
-            "air_allReviewsBlock_selectedProduct": []
-          }
-        }
-      },
-      "block_order": [
-        "air_product_reviews_app_block_all_review_rBqT7Q"
-      ],
-      "settings": {
-        "include_margins": true
-      }
-    },
     "172869336761de081a": {
       "type": "apps",
       "blocks": {
@@ -188,32 +163,11 @@
             "showAvatar": false,
             "fixedReviewsHeight": false
           }
-        },
-        "air_product_reviews_app_block_all_review_YqWUGy": {
-          "type": "shopify://apps/air-product-reviews/blocks/app-block-all-review/c4e1e9ca-4d46-4e76-bc39-7e42417cb327",
-          "settings": {
-            "air_allReviewsBlock_heading": "All reviews page",
-            "air_allReviewsBlock_useSimpleSummary": false,
-            "air_allReviewsBlock_maxReview": 20,
-            "air_allReviewsBlock_summaryBgColor": "#f8f8f8",
-            "air_allReviewsBlock_bgColor": "#ffffff",
-            "air_allReviewsBlock_onlyMedia": false,
-            "air_allReviewsBlock_onlyPositive": false,
-            "air_allReviewsBlock_hideProductThumbnails": false,
-            "air_allReviewsBlock_selectedProduct": []
-          }
         }
       },
       "block_order": [
-        "reputon_etsy_reviews_carousel_widget_block_c4QAcr",
-        "air_product_reviews_app_block_all_review_YqWUGy"
+        "reputon_etsy_reviews_carousel_widget_block_c4QAcr"
       ],
-      "settings": {
-        "include_margins": true
-      }
-    },
-    "1728693535c830a9a9": {
-      "type": "apps",
       "settings": {
         "include_margins": true
       }
@@ -310,9 +264,7 @@
     "image_banner_PAwymw",
     "featured_collection",
     "elk_section_ETkyK7",
-    "172869217229d03ff6",
     "172869336761de081a",
-    "1728693535c830a9a9",
     "1740582047e3458e00",
     "antler_overlay_carousel_YDeBXr",
     "ducks_conservation_TbV9Me",

@@ -97,6 +97,7 @@
           "type": "shopify://apps/reputon-etsy-reviews/blocks/carousel-widget-block/8df530b9-db50-44f9-a43b-c93c6bac56a9",
           "settings": {
             "themeId": "light",
+            "font": "default",
             "autoscroll": true,
             "showRating": true,
             "showProductPicture": true,
@@ -118,12 +119,19 @@
       "settings": {
         "include_margins": true
       }
+    },
+    "177246940948f73a4c": {
+      "type": "apps",
+      "settings": {
+        "include_margins": true
+      }
     }
   },
   "order": [
     "main",
     "related-products",
     "174331023079e8e42c",
-    "1743310170ebb7933b"
+    "1743310170ebb7933b",
+    "177246940948f73a4c"
   ]
 }
