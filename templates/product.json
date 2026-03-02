@@ -114,14 +114,22 @@
         "include_margins": true
       }
     },
-    "1743310170ebb7933b": {
+    "1772469472f1b5f9b9": {
       "type": "apps",
-      "settings": {
-        "include_margins": true
-      }
-    },
-    "177246940948f73a4c": {
-      "type": "apps",
+      "blocks": {
+        "air_product_reviews_app_block_review_list_x633FT": {
+          "type": "shopify://apps/air-product-reviews/blocks/app-block-review-list/c4e1e9ca-4d46-4e76-bc39-7e42417cb327",
+          "settings": {
+            "air_blockreviews_summaryHeading": "Reviews",
+            "air_blockreviews_layout": "list",
+            "air_blockreviews_singleStarColor": "#16A086",
+            "air_blockreviews_primaryColor": "#121212"
+          }
+        }
+      },
+      "block_order": [
+        "air_product_reviews_app_block_review_list_x633FT"
+      ],
       "settings": {
         "include_margins": true
       }
@@ -131,7 +139,6 @@
     "main",
     "related-products",
     "174331023079e8e42c",
-    "1743310170ebb7933b",
-    "177246940948f73a4c"
+    "1772469472f1b5f9b9"
   ]
 }
