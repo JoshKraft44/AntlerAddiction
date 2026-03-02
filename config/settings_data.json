@@ -185,6 +185,11 @@
         "type": "shopify://apps/peek-better-replay-survey/blocks/app-embed/1f29cc96-61f9-4675-b0d8-7ada6610e575",
         "disabled": false,
         "settings": {}
+      },
+      "0318452866381131375": {
+        "type": "shopify://apps/air-reviews-1/blocks/app-embed/c4e1e9ca-4d46-4e76-bc39-7e42417cb327",
+        "disabled": false,
+        "settings": {}
       }
     },
     "color_schemes": {
