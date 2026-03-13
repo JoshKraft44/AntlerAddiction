@@ -1,6 +1,12 @@
 {{ 'component-slider.css' | asset_url | stylesheet_tag }}
 
 {%- style -%}
+  #shopify-section-{{ section.id }},
+  #shopify-section-{{ section.id }} .color-{{ section.settings.color_scheme }}.gradient {
+    background-color: {{ section.settings.background_color }} !important;
+    background: {{ section.settings.background_color }} !important;
+  }
+
   .section-{{ section.id }}-padding {
     padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
     padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
@@ -208,6 +214,12 @@
       "default": 1200,
       "unit": "px",
       "label": "Maximum gallery width"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background color",
+      "default": "#f4f0eb"
     },
     {
       "type": "color_scheme",
