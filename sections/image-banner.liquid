@@ -30,23 +30,75 @@
     opacity: {{ section.settings.image_overlay_opacity | divided_by: 100.0 }};
   }
 
-.banner__buttons .button {
-  color: white;
-text-shadow:
-  1px 1px 2px rgba(0, 0, 0, 0.85),
-  0 0 1px rgba(0, 0, 0, 0.5);
+  /* ---- Mobile styles (default) ---- */
+  #Banner-{{ section.id }} .banner__heading {
+    color: {{ section.settings.mobile_heading_color }};
+    {% if section.settings.mobile_heading_shadow %}
+    text-shadow:
+      1px 1px 2px rgba(0, 0, 0, 0.85),
+      0 0 4px rgba(0, 0, 0, 0.5);
+    {% else %}
+    text-shadow: none;
+    {% endif %}
+  }
 
-  font-weight: 600;
-  background: transparent;
-  border: 1px solid rgba(255, 255, 255, 0.8);
-  padding: 12px 26px;
-}
+  #Banner-{{ section.id }} .banner__buttons .button {
+    color: {{ section.settings.mobile_button_color }};
+    border: 1px solid {{ section.settings.mobile_button_color }};
+    background: transparent;
+    font-weight: 600;
+    padding: 12px 26px;
+    {% if section.settings.mobile_heading_shadow %}
+    text-shadow:
+      1px 1px 2px rgba(0, 0, 0, 0.85),
+      0 0 1px rgba(0, 0, 0, 0.5);
+    {% else %}
+    text-shadow: none;
+    {% endif %}
+  }
 
+  #Banner-{{ section.id }} .banner__buttons .button::after {
+    box-shadow: none;
+  }
 
-
-  .banner__buttons .button:hover {
-    box-shadow: 0 8px 14px rgba(0, 0, 0, 0.5); /* slightly stronger on hover */
+  #Banner-{{ section.id }} .banner__buttons .button:hover {
+    opacity: 0.7;
     transform: translateY(-2px);
+  }
+
+  /* ---- Desktop overrides ---- */
+  @media screen and (min-width: 750px) {
+    #Banner-{{ section.id }} .banner__heading {
+      color: {{ section.settings.desktop_heading_color }};
+      {% if section.settings.desktop_use_serif %}
+      font-family: 'Georgia', 'Times New Roman', serif;
+      font-weight: 400;
+      letter-spacing: -0.02em;
+      {% endif %}
+      {% if section.settings.desktop_heading_shadow %}
+      text-shadow:
+        1px 1px 2px rgba(0, 0, 0, 0.85),
+        0 0 4px rgba(0, 0, 0, 0.5);
+      {% else %}
+      text-shadow: none;
+      {% endif %}
+    }
+
+    #Banner-{{ section.id }} .banner__buttons .button {
+      color: {{ section.settings.desktop_button_color }};
+      border-color: {{ section.settings.desktop_button_color }};
+      {% if section.settings.desktop_heading_shadow %}
+      text-shadow:
+        1px 1px 2px rgba(0, 0, 0, 0.85),
+        0 0 1px rgba(0, 0, 0, 0.5);
+      {% else %}
+      text-shadow: none;
+      {% endif %}
+    }
+
+    #Banner-{{ section.id }} .banner__content {
+      margin-top: {{ section.settings.desktop_content_offset | default: 0 }}px;
+    }
   }
 {%- endstyle -%}
 
@@ -240,6 +292,67 @@ text-shadow:
       "unit": "%",
       "label": "t:sections.image-banner.settings.image_overlay_opacity.label",
       "default": 0
+    },
+    {
+      "type": "header",
+      "content": "Desktop text styling"
+    },
+    {
+      "type": "color",
+      "id": "desktop_heading_color",
+      "label": "Desktop heading color",
+      "default": "#1a1a1a"
+    },
+    {
+      "type": "color",
+      "id": "desktop_button_color",
+      "label": "Desktop button color",
+      "default": "#1a1a1a"
+    },
+    {
+      "type": "checkbox",
+      "id": "desktop_use_serif",
+      "label": "Use serif font on desktop",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "desktop_heading_shadow",
+      "label": "Text shadow on desktop",
+      "default": false
+    },
+    {
+      "type": "range",
+      "id": "desktop_content_offset",
+      "min": -300,
+      "max": 0,
+      "step": 10,
+      "unit": "px",
+      "label": "Desktop content vertical offset",
+      "default": 0,
+      "info": "Negative values push content higher"
+    },
+    {
+      "type": "header",
+      "content": "Mobile text styling"
+    },
+    {
+      "type": "color",
+      "id": "mobile_heading_color",
+      "label": "Mobile heading color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "mobile_button_color",
+      "label": "Mobile button color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "checkbox",
+      "id": "mobile_heading_shadow",
+      "label": "Text shadow on mobile",
+      "default": true
     },
     {
       "type": "select",
