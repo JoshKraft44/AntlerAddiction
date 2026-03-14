@@ -18,7 +18,7 @@
         "text_color": "#f5f0eb",
         "text_color_rgb": "245, 240, 235",
         "menu_heading": "ABOUT",
-        "menu": "footer",
+        "menu": "about-menu",
         "policies_heading": "POLICIES",
         "policies_menu": "footer",
         "subscribe_heading": "HEY!",
