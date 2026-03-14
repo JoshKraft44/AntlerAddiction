@@ -98,6 +98,7 @@
 
     #Banner-{{ section.id }} .banner__content {
       margin-top: {{ section.settings.desktop_content_offset | default: 0 }}px;
+      margin-left: {{ section.settings.desktop_content_horizontal_offset | default: 0 }}px;
     }
   }
 {%- endstyle -%}
@@ -325,12 +326,23 @@
       "type": "range",
       "id": "desktop_content_offset",
       "min": -300,
-      "max": 0,
+      "max": 300,
       "step": 10,
       "unit": "px",
       "label": "Desktop content vertical offset",
       "default": 0,
       "info": "Negative values push content higher"
+    },
+    {
+      "type": "range",
+      "id": "desktop_content_horizontal_offset",
+      "min": -300,
+      "max": 300,
+      "step": 10,
+      "unit": "px",
+      "label": "Desktop content horizontal offset",
+      "default": 0,
+      "info": "Negative = left, Positive = right"
     },
     {
       "type": "header",
