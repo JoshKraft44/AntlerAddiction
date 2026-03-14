@@ -199,6 +199,7 @@
     display: flex;
     justify-content: flex-start;
     align-items: center;
+    overflow: hidden;
   }
 
   .custom-footer__payment {
@@ -206,6 +207,7 @@
     padding: 0;
     margin: 0;
     display: flex;
+    flex-wrap: wrap;
     gap: 8px;
     align-items: center;
   }
@@ -272,19 +274,7 @@
           <p style="margin: 0;">&copy; {{ 'now' | date: '%Y' }} {{ shop.name }}. All rights reserved.</p>
         </div>
 
-        {%- assign has_social = false -%}
-        {%- if settings.social_facebook_link != blank
-          or settings.social_instagram_link != blank
-          or settings.social_youtube_link != blank
-          or settings.social_tiktok_link != blank
-          or settings.social_twitter_link != blank
-          or settings.social_pinterest_link != blank
-          or settings.social_snapchat_link != blank
-          or settings.social_tumblr_link != blank
-          or settings.social_vimeo_link != blank
-        -%}
-          {%- assign has_social = true -%}
-        {%- endif -%}
+        {%- assign has_social = true -%}
 
         {%- if has_social -%}
           <ul class="custom-footer__social" role="list">
@@ -351,6 +341,11 @@
                 </a>
               </li>
             {%- endif -%}
+            <li>
+              <a href="http://antleraddictionab.etsy.com/" aria-label="Etsy" target="_blank" rel="noopener">
+                {%- render 'icon-etsy' -%}
+              </a>
+            </li>
           </ul>
         {%- endif -%}
 
