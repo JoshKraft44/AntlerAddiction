@@ -163,7 +163,7 @@
     letter-spacing: 2px;
     text-transform: uppercase;
     cursor: pointer;
-    padding: 12px 0 0;
+    padding: 22px 0 0;
     font-family: inherit;
     transition: opacity 0.2s ease;
   }
@@ -197,7 +197,7 @@
     margin: 0 auto;
     padding: 0 40px;
     display: flex;
-    justify-content: flex-end;
+    justify-content: flex-start;
     align-items: center;
   }
 
@@ -221,6 +221,13 @@
   .custom-footer__payment svg {
     height: 24px;
     width: auto;
+  }
+
+  /* Ensure the bottom bar is visible above any Shopify wrappers */
+  .custom-footer__bottom,
+  .custom-footer__bottom * {
+    visibility: visible !important;
+    opacity: 1 !important;
   }
 
   /* ---- TABLET (2x2) ---- */
@@ -346,6 +353,7 @@
             {%- endif -%}
           </ul>
         {%- endif -%}
+
       </div>
 
       {%- comment -%} COLUMN 2 — About / Navigation {%- endcomment -%}
@@ -505,7 +513,7 @@
       "type": "textarea",
       "id": "subscribe_text",
       "label": "Description",
-      "default": "Enter your email to stay in the loop on new collections, pop-up shows and more."
+      "default": "Enter your email to stay in the loop on new collections, sales and more."
     },
     {
       "type": "header",
