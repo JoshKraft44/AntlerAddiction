@@ -47,7 +47,7 @@
         "desktop_use_serif": true,
         "desktop_heading_shadow": false,
         "desktop_content_offset": -90,
-        "desktop_content_horizontal_offset": 110,
+        "desktop_content_horizontal_offset": 160,
         "mobile_heading_color": "#ffffff",
         "mobile_button_color": "#ffffff",
         "mobile_heading_shadow": true,
