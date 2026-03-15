@@ -61,9 +61,19 @@
     box-shadow: none;
   }
 
+  #Banner-{{ section.id }} .banner__buttons .button {
+    transition: background-color 0.2s ease, color 0.2s ease, transform 0.2s ease, text-shadow 0.2s ease;
+  }
+
   #Banner-{{ section.id }} .banner__buttons .button:hover {
-    opacity: 0.7;
-    transform: translateY(-2px);
+    background-color: {{ section.settings.mobile_button_color }};
+    {% if section.settings.mobile_button_color == '#ffffff' or section.settings.mobile_button_color == '#fff' %}
+    color: #1a1a1a;
+    {% else %}
+    color: #ffffff;
+    {% endif %}
+    text-shadow: none;
+    transform: translateY(-1px);
   }
 
   /* ---- Desktop overrides ---- */
@@ -94,6 +104,17 @@
       {% else %}
       text-shadow: none;
       {% endif %}
+    }
+
+    #Banner-{{ section.id }} .banner__buttons .button:hover {
+      background-color: {{ section.settings.desktop_button_color }};
+      {% if section.settings.desktop_button_color == '#1a1a1a' or section.settings.desktop_button_color == '#000000' or section.settings.desktop_button_color == '#000' %}
+      color: #ffffff;
+      {% else %}
+      color: #1a1a1a;
+      {% endif %}
+      text-shadow: none;
+      transform: translateY(-1px);
     }
 
     #Banner-{{ section.id }} .banner__content {

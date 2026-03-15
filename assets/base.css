@@ -3707,32 +3707,35 @@ h1.main-page-title.page-title.h0 {
 /* Button styling on entry page */
 @media screen and (min-width: 990px) {
   #shopify-section-template--20881594384706__image_banner .banner__buttons .button {
-    background: transparent !important;
+    background: transparent;
 
-    border: 3px solid #fff !important;   /* white outline */
-    color: #fff !important;
+    border: 3px solid #fff;   /* white outline */
+    color: #fff;
 
     text-shadow: 0 2px 4px rgba(0, 0, 0, 0.75); /* dark text shadow */
     box-shadow: 0 6px 18px rgba(0, 0, 0, 0.35); /* dark outer shadow */
 
-    outline: none !important;
+    outline: none;
+    transition: background-color 0.2s ease, color 0.2s ease, transform 0.2s ease, text-shadow 0.2s ease;
   }
 
   /* Kill Dawn’s pseudo-element ring / black outline on shop antlers entirely */
   #shopify-section-template--20881594384706__image_banner .banner__buttons .button::after {
-    content: none !important;
-    box-shadow: none !important;
+    content: none;
+    box-shadow: none;
   }
 }
 
 @media screen and (min-width: 990px) {
   #shopify-section-template--20881594384706__image_banner .banner__buttons .button:hover {
-    background-color: rgba(0, 0, 0, 0.1); /* subtle fill */
-    color: #fff !important;
+    background-color: #ffffff;
+    color: #1a1a1a;
 
-    border-color: #fff !important; /* keep outline white */
-    box-shadow: 0 8px 22px rgba(0, 0, 0, 0.45); /* deepen shadow */
+    border-color: #fff;
+    box-shadow: 0 8px 22px rgba(0, 0, 0, 0.45);
+    text-shadow: none;
     transform: translateY(-1px);
+    transition: background-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
   }
 }
 
