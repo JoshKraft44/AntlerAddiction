@@ -14,15 +14,15 @@
     "footer": {
       "type": "footer",
       "settings": {
-        "bg_color": "#3b3228",
-        "text_color": "#f5f0eb",
+        "bg_color": "#ffffff",
+        "text_color": "#000000",
         "text_color_rgb": "245, 240, 235",
         "menu_heading": "ABOUT",
         "menu": "about-menu",
         "policies_heading": "POLICIES",
         "policies_menu": "footer",
         "subscribe_heading": "HEY!",
-        "subscribe_text": "Enter your email to stay in the loop on new collections, pop-up shows and more.",
+        "subscribe_text": "Enter your email to stay in the loop on new collections, sales, and more.",
         "payment_enable": true,
         "margin_top": 0
       }
