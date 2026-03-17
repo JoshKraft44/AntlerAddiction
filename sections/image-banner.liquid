@@ -122,6 +122,35 @@
       margin-left: {{ section.settings.desktop_content_horizontal_offset | default: 0 }}px;
     }
   }
+
+  /* ---- Reviews badge (desktop only) ---- */
+  .banner__reviews {
+    display: none;
+  }
+
+  @media screen and (min-width: 750px) {
+    #Banner-{{ section.id }} .banner__reviews {
+      display: flex;
+      align-items: center;
+      align-self: stretch;
+      gap: 8px;
+      margin-bottom: 0;
+      color: {{ section.settings.desktop_heading_color }};
+      text-decoration: none;
+    }
+
+    #Banner-{{ section.id }} .banner__stars {
+      font-size: 16px;
+      letter-spacing: 2px;
+      color: #1a1a1a;
+    }
+
+    #Banner-{{ section.id }} .banner__reviews-text {
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: 0.3px;
+    }
+  }
 {%- endstyle -%}
 
 
@@ -212,6 +241,10 @@
       {%- for block in section.blocks -%}
         {%- case block.type -%}
           {%- when 'heading' -%}
+            <a href="/pages/reviews" class="banner__reviews" {{ block.shopify_attributes }}>
+              <span class="banner__stars">★★★★★</span>
+              <span class="banner__reviews-text">Rated 5.0 ★ from 250+ Reviews</span>
+            </a>
             <h2
               class="banner__heading inline-richtext {{ block.settings.heading_size }}"
               {{ block.shopify_attributes }}
