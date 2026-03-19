@@ -1,0 +1,500 @@
+{{ 'collection-sidebar-grid.css' | asset_url | stylesheet_tag }}
+{{ 'component-card.css' | asset_url | stylesheet_tag }}
+{{ 'component-price.css' | asset_url | stylesheet_tag }}
+{{ 'template-collection.css' | asset_url | stylesheet_tag }}
+
+{%- if section.settings.enable_quick_add -%}
+  {{ 'quick-add.css' | asset_url | stylesheet_tag }}
+  <script src="{{ 'quick-add.js' | asset_url }}" defer="defer"></script>
+  <script src="{{ 'product-form.js' | asset_url }}" defer="defer"></script>
+{%- endif -%}
+
+{%- if section.settings.image_shape == 'blob' -%}
+  {{ 'mask-blobs.css' | asset_url | stylesheet_tag }}
+{%- endif -%}
+
+{%- style -%}
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+
+  .sidebar-collection__layout {
+    grid-template-columns: {{ section.settings.sidebar_width }}px 1fr;
+  }
+
+  @media screen and (min-width: 990px) {
+    .sidebar-collection__grid {
+      grid-template-columns: repeat({{ section.settings.columns_desktop }}, 1fr);
+    }
+  }
+{%- endstyle -%}
+
+<div id="SidebarSection-{{ section.id }}" class="color-{{ section.settings.color_scheme }} isolate gradient" data-section-id="{{ section.id }}">
+  <div class="sidebar-collection section-{{ section.id }}-padding">
+
+    {%- comment -%} MAIN LAYOUT: SIDEBAR + CONTENT {%- endcomment -%}
+    <div class="sidebar-collection__layout">
+
+      {%- comment -%} ===== SIDEBAR NAV ===== {%- endcomment -%}
+      <aside class="sidebar-collection__nav">
+        <button
+          class="sidebar-collection__mobile-toggle"
+          aria-expanded="false"
+          aria-controls="SidebarNav-{{ section.id }}"
+          onclick="
+            var inner = document.getElementById('SidebarNav-{{ section.id }}');
+            var expanded = this.getAttribute('aria-expanded') === 'true';
+            this.setAttribute('aria-expanded', !expanded);
+            inner.classList.toggle('sidebar-collection__nav-inner--open');
+          "
+        >
+          Browse Collections
+        </button>
+
+        <div id="SidebarNav-{{ section.id }}" class="sidebar-collection__nav-inner">
+          {%- assign sidebar_menu = linklists[section.settings.sidebar_menu] -%}
+
+          {%- if sidebar_menu != blank and sidebar_menu.links.size > 0 -%}
+            {%- for link in sidebar_menu.links -%}
+              <nav class="sidebar-collection__nav-group">
+
+                {%- if link.links.size > 0 -%}
+                  <h2 class="sidebar-collection__nav-heading">{{ link.title | escape }}</h2>
+                  <ul class="sidebar-collection__nav-list">
+                    {%- for child_link in link.links -%}
+                      <li class="sidebar-collection__nav-item">
+                        {%- assign child_handle = child_link.url | split: '/collections/' | last | split: '?' | first | split: '/' | first -%}
+                        <a
+                          href="{{ child_link.url }}"
+                          class="sidebar-collection__nav-link{% if child_handle == collection.handle %} sidebar-collection__nav-link--active{% endif %}"
+                          data-collection-url="{{ child_link.url }}"
+                          data-sidebar-link
+                          {% if child_handle == collection.handle %}aria-current="page"{% endif %}
+                        >
+                          {{ child_link.title | escape }}
+                        </a>
+                      </li>
+                    {%- endfor -%}
+                  </ul>
+                {%- else -%}
+                  <ul class="sidebar-collection__nav-list">
+                    <li class="sidebar-collection__nav-item">
+                      {%- assign link_handle = link.url | split: '/collections/' | last | split: '?' | first | split: '/' | first -%}
+                      <a
+                        href="{{ link.url }}"
+                        class="sidebar-collection__nav-link{% if link_handle == collection.handle %} sidebar-collection__nav-link--active{% endif %}"
+                        data-collection-url="{{ link.url }}"
+                        data-sidebar-link
+                        {% if link_handle == collection.handle %}aria-current="page"{% endif %}
+                      >
+                        {{ link.title | escape }}
+                      </a>
+                    </li>
+                  </ul>
+                {%- endif -%}
+              </nav>
+            {%- endfor -%}
+          {%- else -%}
+            <p style="font-size: 14px; color: #888; padding: 1rem 0;">
+              Select a navigation menu in the section settings to populate the sidebar.
+            </p>
+          {%- endif -%}
+        </div>
+      </aside>
+
+      {%- comment -%} ===== RIGHT CONTENT (title + sort + grid) ===== {%- endcomment -%}
+      <div class="sidebar-collection__content" id="SidebarContent-{{ section.id }}">
+
+        {%- comment -%} COLLECTION TITLE {%- endcomment -%}
+        {%- if section.settings.show_collection_title -%}
+          <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 1.5rem;">
+            <h1 class="sidebar-collection__title" style="
+              font-family: 'Playfair Display', serif;
+              font-weight: 900;
+              font-size: 2.4rem;
+              color: #4a3f2a;
+              text-transform: uppercase;
+              letter-spacing: 0.5px;
+              border-bottom: 2px solid #c2a974;
+              display: inline-block;
+              padding-bottom: 6px;
+              margin: 0;
+            ">
+              {{ collection.title }}
+            </h1>
+            <a href="{{ collection.url }}" class="sidebar-collection__title-arrow" title="View full {{ collection.title }} collection" style="
+              display: inline-flex;
+              align-items: center;
+              color: #c2a974;
+              transition: transform 0.2s ease, color 0.2s ease;
+              text-decoration: none;
+              flex-shrink: 0;
+              margin-bottom: 10px;
+            " onmouseover="this.style.transform='translateX(3px)'" onmouseout="this.style.transform='none'">
+              <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+            </a>
+          </div>
+        {%- endif -%}
+
+        {%- comment -%} SORT BAR {%- endcomment -%}
+        <div class="sidebar-collection__sort-bar">
+          <span class="sidebar-collection__count">
+            {{ collection.products_count }} {{ collection.products_count | pluralize: 'product', 'products' }}
+          </span>
+
+          {%- if section.settings.enable_sorting -%}
+            {%- assign sort_by = collection.sort_by | default: collection.default_sort_by -%}
+            <label class="sidebar-collection__sort-label" for="SortBy-{{ section.id }}">Sort by</label>
+            <select
+              id="SortBy-{{ section.id }}"
+              class="sidebar-collection__sort-select"
+              data-sidebar-sort
+            >
+              {%- for option in collection.sort_options -%}
+                <option value="{{ option.value }}" {% if option.value == sort_by %}selected="selected"{% endif %}>
+                  {{ option.name | escape }}
+                </option>
+              {%- endfor -%}
+            </select>
+          {%- endif -%}
+        </div>
+
+        {%- comment -%} PRODUCT GRID {%- endcomment -%}
+        <div class="sidebar-collection__products">
+          {%- paginate collection.products by section.settings.products_per_page -%}
+            {%- if collection.products.size > 0 -%}
+              <ul class="sidebar-collection__grid sidebar-collection__grid--{{ section.settings.columns_desktop }}-col">
+                {%- for product in collection.products -%}
+                  <li
+                    class="sidebar-collection__grid-item{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
+                    {% if settings.animations_reveal_on_scroll %}
+                      data-cascade
+                      style="--animation-order: {{ forloop.index }};"
+                    {% endif %}
+                  >
+                    {% render 'card-product',
+                      card_product: product,
+                      media_aspect_ratio: section.settings.image_ratio,
+                      image_shape: section.settings.image_shape,
+                      show_secondary_image: section.settings.show_secondary_image,
+                      show_vendor: section.settings.show_vendor,
+                      show_rating: section.settings.show_rating,
+                      lazy_load: true,
+                      show_quick_add: section.settings.enable_quick_add,
+                      section_id: section.id
+                    %}
+                  </li>
+                {%- endfor -%}
+              </ul>
+            {%- else -%}
+              <p class="sidebar-collection__empty">
+                No products found in this collection.
+              </p>
+            {%- endif -%}
+
+            {%- if paginate.pages > 1 -%}
+              <div class="sidebar-collection__pagination">
+                {% render 'pagination', paginate: paginate, anchor: '' %}
+              </div>
+            {%- endif -%}
+          {%- endpaginate -%}
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+{% if section.settings.image_shape == 'arch' %}
+  {% render 'mask-arch' %}
+{%- endif -%}
+
+<script>
+  (function() {
+    var sectionId = '{{ section.id }}';
+    var container = document.getElementById('SidebarSection-' + sectionId);
+    if (!container) return;
+
+    /* ---- AJAX fetch helper ---- */
+    function fetchCollection(url) {
+      var separator = url.indexOf('?') > -1 ? '&' : '?';
+      var fetchUrl = url + separator + 'section_id=' + sectionId;
+
+      /* Show loading state */
+      var content = document.getElementById('SidebarContent-' + sectionId);
+      content.style.opacity = '0.5';
+      content.style.pointerEvents = 'none';
+
+      fetch(fetchUrl)
+        .then(function(response) { return response.text(); })
+        .then(function(html) {
+          /* Parse the returned HTML */
+          var parser = new DOMParser();
+          var doc = parser.parseFromString(html, 'text/html');
+
+          /* Extract the new content area */
+          var newContent = doc.getElementById('SidebarContent-' + sectionId);
+          if (newContent) {
+            content.innerHTML = newContent.innerHTML;
+          }
+
+          /* Update active states in sidebar */
+          var collectionHandle = url.split('/collections/')[1];
+          if (collectionHandle) {
+            collectionHandle = collectionHandle.split('?')[0].split('/')[0];
+          }
+          var links = container.querySelectorAll('[data-sidebar-link]');
+          links.forEach(function(link) {
+            var linkUrl = link.getAttribute('data-collection-url') || '';
+            var linkHandle = linkUrl.split('/collections/')[1];
+            if (linkHandle) {
+              linkHandle = linkHandle.split('?')[0].split('/')[0];
+            }
+            if (linkHandle === collectionHandle) {
+              link.classList.add('sidebar-collection__nav-link--active');
+              link.setAttribute('aria-current', 'page');
+            } else {
+              link.classList.remove('sidebar-collection__nav-link--active');
+              link.removeAttribute('aria-current');
+            }
+          });
+
+          /* Restore content visibility */
+          content.style.opacity = '1';
+          content.style.pointerEvents = '';
+
+          /* Update browser URL without reload */
+          window.history.pushState({sidebarUrl: url}, '', url);
+
+          /* Re-bind sort and pagination in new content */
+          bindSort();
+          bindPagination();
+
+          /* Scroll to top of grid */
+          content.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        })
+        .catch(function() {
+          /* On error, fall back to normal navigation */
+          window.location.href = url;
+        });
+    }
+
+    /* ---- Sidebar link clicks ---- */
+    container.addEventListener('click', function(e) {
+      var link = e.target.closest('[data-sidebar-link]');
+      if (!link) return;
+
+      e.preventDefault();
+      var url = link.getAttribute('data-collection-url') || link.getAttribute('href');
+      if (url) fetchCollection(url);
+    });
+
+    /* ---- Sort dropdown ---- */
+    function bindSort() {
+      var sortSelect = container.querySelector('[data-sidebar-sort]');
+      if (!sortSelect) return;
+      sortSelect.addEventListener('change', function() {
+        var currentPath = window.location.pathname;
+        var sortUrl = currentPath + '?sort_by=' + this.value;
+        fetchCollection(sortUrl);
+      });
+    }
+    bindSort();
+
+    /* ---- Pagination clicks ---- */
+    function bindPagination() {
+      var content = document.getElementById('SidebarContent-' + sectionId);
+      if (!content) return;
+      var pagination = content.querySelector('.sidebar-collection__pagination');
+      if (!pagination) return;
+
+      pagination.addEventListener('click', function(e) {
+        var link = e.target.closest('a');
+        if (!link) return;
+        e.preventDefault();
+        fetchCollection(link.href);
+      });
+    }
+    bindPagination();
+
+    /* ---- Handle browser back/forward ---- */
+    window.addEventListener('popstate', function(e) {
+      if (e.state && e.state.sidebarUrl) {
+        fetchCollection(e.state.sidebarUrl);
+      }
+    });
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "Sidebar Collection Grid",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Collection title"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_collection_title",
+      "label": "Show collection title",
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": "Sidebar navigation"
+    },
+    {
+      "type": "link_list",
+      "id": "sidebar_menu",
+      "label": "Sidebar menu",
+      "default": "main-menu",
+      "info": "Create a menu in Settings → Navigation. Top-level items with children become category headings. Top-level items without children become standalone links."
+    },
+    {
+      "type": "range",
+      "id": "sidebar_width",
+      "min": 180,
+      "max": 320,
+      "step": 10,
+      "default": 240,
+      "unit": "px",
+      "label": "Sidebar width (desktop)"
+    },
+    {
+      "type": "header",
+      "content": "Product grid"
+    },
+    {
+      "type": "range",
+      "id": "products_per_page",
+      "min": 6,
+      "max": 48,
+      "step": 3,
+      "default": 24,
+      "label": "Products per page"
+    },
+    {
+      "type": "range",
+      "id": "columns_desktop",
+      "min": 2,
+      "max": 4,
+      "step": 1,
+      "default": 3,
+      "label": "Columns on desktop"
+    },
+    {
+      "type": "select",
+      "id": "columns_mobile",
+      "default": "2",
+      "label": "Columns on mobile",
+      "options": [
+        { "value": "1", "label": "1 column" },
+        { "value": "2", "label": "2 columns" }
+      ]
+    },
+    {
+      "type": "select",
+      "id": "image_ratio",
+      "options": [
+        { "value": "adapt", "label": "Adapt to image" },
+        { "value": "portrait", "label": "Portrait" },
+        { "value": "square", "label": "Square" }
+      ],
+      "default": "adapt",
+      "label": "Image ratio"
+    },
+    {
+      "type": "select",
+      "id": "image_shape",
+      "options": [
+        { "value": "default", "label": "Default" },
+        { "value": "arch", "label": "Arch" },
+        { "value": "blob", "label": "Blob" },
+        { "value": "chevronleft", "label": "Chevron left" },
+        { "value": "chevronright", "label": "Chevron right" },
+        { "value": "diamond", "label": "Diamond" },
+        { "value": "parallelogram", "label": "Parallelogram" },
+        { "value": "round", "label": "Round" }
+      ],
+      "default": "default",
+      "label": "Image shape"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_secondary_image",
+      "default": false,
+      "label": "Show second image on hover"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_vendor",
+      "default": false,
+      "label": "Show vendor"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_rating",
+      "default": false,
+      "label": "Show product rating"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_quick_add",
+      "default": false,
+      "label": "Enable quick add button"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_sorting",
+      "default": true,
+      "label": "Enable sorting"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "default": "background-1"
+    },
+    {
+      "type": "header",
+      "content": "Section padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Top padding",
+      "default": 28
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Bottom padding",
+      "default": 36
+    }
+  ],
+  "presets": [
+    {
+      "name": "Sidebar Collection Grid"
+    }
+  ]
+}
+{% endschema %}
