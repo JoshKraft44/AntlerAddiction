@@ -3589,7 +3589,7 @@ h1.main-page-title.page-title.h0 {
   border-bottom: 2px solid #c2a974;
   padding-bottom: 0.5rem;
   margin: 2rem auto;
-  display: table; /* this centers and lets underline match text width */
+  display: table;
   text-align: center;
 }
 

@@ -1,8 +1,7 @@
 {{ 'section-contact-form.css' | asset_url | stylesheet_tag }}
 
 {%- style -%}
-  /* ===== CURSOR FIX ===== */
-  
+  /* ===== INPUT FIXES ===== */
   .field__input {
     line-height: normal !important;
     height: auto !important;
@@ -30,10 +29,6 @@
     vertical-align: top !important;
   }
 
-  .field__label {
-    display: none !important;
-  }
-
   .field__input,
   .field__label {
     transition: none !important;
@@ -49,234 +44,66 @@
     }
   }
 
-  /* ===== MODERN CLEAN LAYOUT ===== */
-  .contact-section {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: flex-start;
-    gap: 5rem;
-    padding: 5rem 2rem;
-    background: #ffffff;
-    max-width: 1400px;
+  /* ===== PAGE LAYOUT ===== */
+  .contact-page {
+    max-width: 860px;
     margin: 0 auto;
+    padding: 4rem 40px 5rem;
   }
 
-  /* ===== INFO SIDEBAR ===== */
-  .contact-info-box {
-    flex: 0 1 300px;
-    padding: 0;
-    padding-top: 2rem;
-    margin-top: 0;
-    text-align: left;
-  }
-
-  .contact-info-box * {
-    text-align: left;
-  }
-
-  .contact-info-box h3 {
-    font-size: 1.6rem;
-    font-weight: 700;
-    margin-bottom: 1rem;
-    color: #4b2c33;
-    letter-spacing: 0.15rem;
-    text-transform: uppercase;
-    position: relative;
-    display: inline-block;
-  }
-
-  /* Gradient line under Customer Service heading - full width with teal accent */
-  .contact-info-box h3::after {
-    content: '';
-    position: absolute;
-    bottom: -10px;
-    left: 0;
-    width: 100%;
-    height: 3px;
-    background: linear-gradient(90deg, #6e4a56 0%, #5a9a9e 100%);
-    border-radius: 2px;
-  }
-
-  .info-section {
+  /* ===== HEADER ===== */
+  .contact-page__header {
+    text-align: center;
     margin-bottom: 3rem;
   }
 
-  .info-section:first-of-type {
-    margin-top: 4rem;
-  }
-
-  .info-section:last-child {
-    margin-bottom: 0;
-  }
-
-  .info-section-title {
-    font-size: 1.4rem;
+  .contact-page__title {
+    font-size: 32px;
     font-weight: 600;
-    color: #6e4a56;
-    margin-bottom: 1rem;
-    text-transform: uppercase;
-    letter-spacing: 0.1rem;
+    color: #1a1a1a;
+    letter-spacing: -0.01em;
+    margin: 0 0 1rem;
   }
 
-  .contact-email-link {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    color: #4b2c33;
+  .contact-page__subtitle {
+    font-size: 15px;
+    color: #4a4a4a;
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  .contact-page__subtitle a {
+    color: #1a1a1a;
     text-decoration: none;
-    font-size: 1.5rem;
-    font-weight: 500;
-    padding: 0.75rem 0;
-    transition: all 0.3s ease;
-    position: relative;
+    border-bottom: 1px solid #d9d9d9;
+    transition: border-color 0.2s ease;
   }
 
-  .contact-email-link::after {
-    content: '';
-    position: absolute;
-    bottom: -2px;
-    left: 0;
-    width: 0;
-    height: 2px;
-    background-color: #4b2c33;
-    transition: width 0.3s ease;
+  .contact-page__subtitle a:hover {
+    border-bottom-color: #1a1a1a;
   }
 
-  .contact-email-link:hover {
-    color: #4b2c33;
-  }
-
-  .contact-email-link:hover::after {
-    width: 100%;
-  }
-
-  .info-links-grid {
-    display: grid;
-    gap: 0.5rem;
-  }
-
-  .info-link {
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-    padding: 0.75rem 0;
-    transition: transform 0.2s ease;
-  }
-
-  .info-link:hover {
-    transform: translateX(4px);
-  }
-
-  .info-link a {
-    color: #6e4a56;
-    text-decoration: none;
-    font-size: 1.5rem;
-    font-weight: 500;
-    transition: color 0.2s ease;
-    position: relative;
-  }
-
-  .info-link a::after {
-    content: '';
-    position: absolute;
-    bottom: -2px;
-    left: 0;
-    width: 0;
-    height: 2px;
-    background-color: #4b2c33;
-    transition: width 0.3s ease;
-  }
-
-  .info-link .emoji {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 2rem;
-    height: 2rem;
-    font-size: 1.3rem;
-    opacity: 0.85;
-  }
-
-  .info-link:hover a {
-    color: #4b2c33;
-  }
-
-  .info-link:hover a::after {
-    width: 100%;
-  }
-
-  .info-divider {
-    height: 1px;
-    background: linear-gradient(to right, #e8ddd6, transparent);
-    margin: 2rem 0;
-  }
-
-  /* ===== FORM SECTION ===== */
-  .contact-form-box {
-    flex: 2 1 700px;
-    padding: 0;
-  }
-
-  .contact-form-box h2 {
-    font-size: 3.2rem;
-    font-weight: 700;
-    margin-bottom: 1rem;
-    color: #4b2c33;
-    letter-spacing: 0.02rem;
-    position: relative;
-    display: inline-block;
-  }
-
-  /* Cool gradient line under heading */
-  .contact-form-box h2::after {
-    content: '';
-    position: absolute;
-    bottom: -10px;
-    left: 0;
-    width: 80px;
-    height: 4px;
-    background: linear-gradient(90deg, #6e4a56 0%, #bca9a2 100%);
-    border-radius: 2px;
-  }
-
-  .contact-subheading {
+  /* ===== FORM ===== */
+  .contact-page__form-wrap {
     margin-bottom: 3rem;
-    margin-top: 2.5rem;
-    font-size: 1.6rem;
-    color: #6e4a56;
-    line-height: 1.7;
   }
 
-  .contact-subheading a {
-    color: #6e4a56;
-    text-decoration: none;
-    border-bottom: 1px solid #d4c4bb;
-    transition: all 0.25s ease;
-  }
-
-  .contact-subheading a:hover {
-    color: #4b2c33;
-    border-bottom-color: #4b2c33;
-  }
-
-  /* ===== FORM FIELDS ===== */
   .contact__fields {
     display: grid;
-    grid-template-columns: 1fr;
-    gap: 1.5rem;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+
+  .contact__fields .field--full {
+    grid-column: 1 / -1;
   }
 
   .field {
-    margin-bottom: 1rem;
+    margin-bottom: 0;
     position: relative;
   }
 
-  /* Add extra spacing above the comment/textarea field */
-  .field:has(textarea) {
-    margin-top: 2rem;
-  }
-
-  /* Force-hide labels */
+  /* Visually hidden labels (accessibility) */
   .field__label {
     border: 0 !important;
     clip: rect(0 0 0 0) !important;
@@ -299,42 +126,44 @@
     display: none !important;
   }
 
-  /* Modern input styling */
   .field__input {
     width: 100%;
-    padding: 1rem 1.25rem;
-    border: none;
+    padding: 12px 14px;
+    border: 1px solid rgba(26, 26, 26, 0.25);
     border-radius: 0;
     background-color: transparent;
     outline: none;
     text-align: left;
     line-height: normal;
-    font-size: 1.5rem;
-    color: #4b2c33;
-    transition: all 0.3s ease;
+    font-size: 14px;
+    color: #1a1a1a;
+    font-family: inherit;
+    transition: border-color 0.2s ease;
   }
 
   .field__input:hover {
+    border-color: rgba(26, 26, 26, 0.5);
     background-color: transparent;
   }
 
   .field__input:focus {
     background-color: transparent;
+    border-color: #1a1a1a;
     box-shadow: none;
     outline: none;
   }
 
   .field__input::placeholder {
-    color: #b5a299;
-    opacity: 1;
+    color: #1a1a1a;
+    opacity: 0.4;
   }
 
   .field__input:focus::placeholder {
-    opacity: 0;
+    opacity: 0.25;
   }
 
   textarea.text-area {
-    height: 180px;
+    height: 160px;
     resize: vertical;
     width: 100%;
     line-height: 1.6;
@@ -343,64 +172,95 @@
 
   /* ===== BUTTON ===== */
   .contact__button {
-    margin-top: 2rem;
+    margin-top: 1.5rem;
   }
 
   button.button {
-    background: linear-gradient(135deg, #6e4a56 0%, #5a3a45 100%);
-    color: white;
-    text-transform: uppercase;
-    letter-spacing: 1.5px;
-    padding: 1.1rem 3.5rem;
-    border: none;
-    border-radius: 3px;
+    display: inline-block;
+    padding: 12px 28px;
+    background-color: transparent;
+    color: #1a1a1a;
+    border: 2px solid #1a1a1a;
+    border-radius: 4px;
     cursor: pointer;
-    font-weight: 600;
-    font-size: 1.4rem;
-    transition: all 0.3s ease;
-    box-shadow: 0 4px 15px rgba(110, 74, 86, 0.2);
-    position: relative;
-    overflow: hidden;
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    font-family: inherit;
+    transition: background-color 0.2s ease, color 0.2s ease;
+    box-shadow: none;
+    overflow: visible;
   }
 
   button.button::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-    transition: left 0.5s ease;
+    display: none;
   }
 
   button.button:hover {
-    background: linear-gradient(135deg, #5a3a45 0%, #4b2c33 100%);
-    transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(110, 74, 86, 0.3);
-  }
-
-  button.button:hover::before {
-    left: 100%;
+    background-color: #1a1a1a;
+    color: #ffffff;
+    transform: none;
+    box-shadow: none;
   }
 
   button.button:active {
-    transform: translateY(0);
-    box-shadow: 0 2px 10px rgba(110, 74, 86, 0.2);
+    opacity: 0.9;
+  }
+
+  /* ===== EMAIL CALLOUT ===== */
+  .contact-page__email {
+    text-align: center;
+    padding-top: 2.5rem;
+    border-top: 1px solid #d9d9d9;
+  }
+
+  .contact-page__email-label {
+    font-size: 12px;
+    font-weight: 500;
+    color: #1a1a1a;
+    opacity: 0.5;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    margin: 0 0 0.5rem;
+  }
+
+  .contact-page__email-link {
+    display: inline-block;
+    color: #1a1a1a;
+    text-decoration: none;
+    font-size: 15px;
+    font-weight: 400;
+    position: relative;
+  }
+
+  .contact-page__email-link::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background-color: #1a1a1a;
+    transition: width 0.25s ease;
+  }
+
+  .contact-page__email-link:hover::after {
+    width: 100%;
   }
 
   /* ===== STATUS MESSAGES ===== */
   .form-status {
-    padding: 1.5rem;
-    margin-bottom: 2rem;
-    border-radius: 3px;
-    font-size: 1.5rem;
+    padding: 1.25rem;
+    margin-bottom: 1.5rem;
+    border-radius: 0;
+    font-size: 14px;
   }
 
   .form-status--success {
-    background-color: #e8f5e9;
-    border: 1px solid #81c784;
-    color: #2e7d32;
+    background-color: #f0f7f0;
+    border: 1px solid #a8d5a8;
+    color: #2e5c2e;
   }
 
   .form-status--error {
@@ -411,109 +271,57 @@
 
   .contact__field-error {
     color: #c62828;
-    font-size: 1.3rem;
+    font-size: 13px;
     margin-top: 0.5rem;
     display: block;
   }
 
   /* ===== RESPONSIVE ===== */
-  @media (max-width: 968px) {
-    .contact-section {
-      gap: 4rem;
-    }
-  }
-
   @media (max-width: 768px) {
-    .contact-section {
-      flex-direction: column;
-      gap: 3rem;
-      padding: 3rem 1.5rem;
+    .contact-page {
+      padding: 3rem 24px 4rem;
     }
 
-    .contact-info-box,
-    .contact-form-box {
-      flex-basis: 100%;
+    .contact-page__title {
+      font-size: 26px;
     }
 
-    .contact-form-box h2 {
-      font-size: 2.6rem;
-    }
-
-    .contact-subheading {
-      font-size: 1.5rem;
+    .contact__fields {
+      grid-template-columns: 1fr;
     }
 
     button.button {
       width: 100%;
-      padding: 1.2rem 2rem;
+      padding: 14px 28px;
     }
   }
 
   @media (max-width: 480px) {
-    .contact-section {
-      padding: 2rem 1rem;
+    .contact-page {
+      padding: 2.5rem 16px 3rem;
     }
 
-    .contact-form-box h2 {
-      font-size: 2.2rem;
-    }
-
-    .field__input {
-      font-size: 1.6rem;
-      padding: 0.9rem 1rem;
+    .contact-page__title {
+      font-size: 24px;
     }
   }
 
 {%- endstyle -%}
 
-<div class="contact-section">
-  <div class="contact-info-box">
-    <h3>Customer Service</h3>
-    
-    <div class="info-section">
-      <div class="info-section-title">Email Us</div>
-      <a href="mailto:support@antleraddiction.ca" class="contact-email-link">
-        <span>📧</span>
-        <span>support@antleraddiction.ca</span>
-      </a>
-    </div>
-
-    <div class="info-divider"></div>
-
-    <div class="info-section">
-      <div class="info-section-title">Quick Links</div>
-      <div class="info-links-grid">
-        <div class="info-link">
-          <span class="emoji">❓</span>
-          <a href="/pages/FAQ">FAQ</a>
-        </div>
-        <div class="info-link">
-          <span class="emoji">👋</span>
-          <a href="/pages/about">About Us</a>
-        </div>
-        <div class="info-link">
-          <span class="emoji">🔒</span>
-          <a href="/policies/privacy-policy">Privacy Policy</a>
-        </div>
-        <div class="info-link">
-          <span class="emoji">📦</span>
-          <a href="/policies/shipping-policy">Shipping</a>
-        </div>
-      </div>
-    </div>
+<div class="contact-page">
+  <div class="contact-page__header">
+    <h1 class="contact-page__title">Get in Touch</h1>
+    <p class="contact-page__subtitle">Have a question about sizing, selection, or your order? We’re happy to help.</p>
   </div>
 
-  <div class="contact-form-box">
-    <h2>CONTACT US</h2>
-    <p class="contact-subheading">For any inquiries, questions, or concerns, feel free to contact us via the form below or by sending an email to <a href="mailto:support@antleraddiction.ca">support@antleraddiction.ca</a>. We will get back to you as soon as possible.</p>
-
+  <div class="contact-page__form-wrap">
     {%- form 'contact', id: 'ContactForm', class: 'isolate' -%}
       {%- if form.posted_successfully? -%}
         <div class="form-status form-status--success" tabindex="-1" autofocus>
           {{ 'templates.contact.form.post_success' | t }}
         </div>
       {%- endif -%}
-      
+
       {%- if form.errors -%}
         <div class="form-status form-status--error">
           <h2 class="visually-hidden">{{ 'accessibility.error' | t }}</h2>
@@ -526,34 +334,34 @@
       <div class="contact__fields">
         <div class="field">
           <label class="field__label" for="ContactForm-name">{{ 'templates.contact.form.name' | t }}</label>
-          <input 
-            class="field__input" 
-            autocomplete="name" 
-            type="text" 
-            id="ContactForm-name" 
-            name="contact[{{ 'templates.contact.form.name' | t }}]" 
-            value="{% if form.name %}{{ form.name }}{% elsif customer %}{{ customer.name }}{% endif %}" 
-            placeholder="{{ 'templates.contact.form.name' | t }}" 
+          <input
+            class="field__input"
+            autocomplete="name"
+            type="text"
+            id="ContactForm-name"
+            name="contact[{{ 'templates.contact.form.name' | t }}]"
+            value="{% if form.name %}{{ form.name }}{% elsif customer %}{{ customer.name }}{% endif %}"
+            placeholder="{{ 'templates.contact.form.name' | t }}"
             required>
         </div>
-        
+
         <div class="field field--with-error">
           <label class="field__label" for="ContactForm-email">{{ 'templates.contact.form.email' | t }}</label>
-          <input 
-            autocomplete="email" 
-            type="email" 
-            id="ContactForm-email" 
-            class="field__input" 
-            name="contact[email]" 
-            spellcheck="false" 
-            autocapitalize="off" 
-            value="{% if form.email %}{{ form.email }}{% elsif customer %}{{ customer.email }}{% endif %}" 
-            aria-required="true" 
-            {% if form.errors contains 'email' %} 
-              aria-invalid="true" 
-              aria-describedby="ContactForm-email-error" 
-            {% endif %} 
-            placeholder="{{ 'templates.contact.form.email' | t }} *" 
+          <input
+            autocomplete="email"
+            type="email"
+            id="ContactForm-email"
+            class="field__input"
+            name="contact[email]"
+            spellcheck="false"
+            autocapitalize="off"
+            value="{% if form.email %}{{ form.email }}{% elsif customer %}{{ customer.email }}{% endif %}"
+            aria-required="true"
+            {% if form.errors contains 'email' %}
+              aria-invalid="true"
+              aria-describedby="ContactForm-email-error"
+            {% endif %}
+            placeholder="{{ 'templates.contact.form.email' | t }} *"
             required>
           {%- if form.errors contains 'email' -%}
             <small class="contact__field-error" id="ContactForm-email-error">
@@ -562,36 +370,28 @@
             </small>
           {%- endif -%}
         </div>
-        
-        <div class="field">
-          <label class="field__label" for="ContactForm-phone">{{ 'templates.contact.form.phone' | t }}</label>
-          <input 
-            class="field__input" 
-            autocomplete="tel" 
-            type="tel" 
-            id="ContactForm-phone" 
-            name="contact[{{ 'templates.contact.form.phone' | t }}]" 
-            pattern="[0-9\-]*" 
-            value="{% if form.phone %}{{ form.phone }}{% elsif customer %}{{ customer.phone }}{% endif %}" 
-            placeholder="{{ 'templates.contact.form.phone' | t }}">
-        </div>
-      </div>
 
-      <div class="field">
-        <label class="field__label" for="ContactForm-body">{{ 'templates.contact.form.comment' | t }}</label>
-        <textarea 
-          rows="10" 
-          id="ContactForm-body" 
-          class="text-area field__input" 
-          name="contact[{{ 'templates.contact.form.comment' | t }}]" 
-          placeholder="{{ 'templates.contact.form.comment' | t }}" 
-          required>{%- if form.body -%}{{ form.body }}{%- endif -%}</textarea>
+        <div class="field field--full">
+          <label class="field__label" for="ContactForm-body">{{ 'templates.contact.form.comment' | t }}</label>
+          <textarea
+            rows="10"
+            id="ContactForm-body"
+            class="text-area field__input"
+            name="contact[{{ 'templates.contact.form.comment' | t }}]"
+            placeholder="{{ 'templates.contact.form.comment' | t }}"
+            required>{%- if form.body -%}{{ form.body }}{%- endif -%}</textarea>
+        </div>
       </div>
 
       <div class="contact__button">
         <button type="submit" class="button">{{ 'templates.contact.form.send' | t }}</button>
       </div>
     {%- endform -%}
+  </div>
+
+  <div class="contact-page__email">
+    <p class="contact-page__email-label">Or email us directly</p>
+    <a href="mailto:support@antleraddiction.ca" class="contact-page__email-link">support@antleraddiction.ca</a>
   </div>
 </div>
 

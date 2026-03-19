@@ -191,6 +191,7 @@
     margin-top: 48px;
     border-top: 1px solid rgba({{ section.settings.text_color_rgb }}, 0.15);
     padding: 20px 0;
+    background-color: #f4f0eb;
   }
 
   .custom-footer__bottom-inner {
@@ -224,6 +225,12 @@
   .custom-footer__payment svg {
     height: 24px;
     width: auto;
+  }
+
+  .custom-footer__payment svg > rect,
+  .custom-footer__payment svg > path[opacity],
+  .custom-footer__payment svg > path:first-child {
+    display: none !important;
   }
 
   /* Ensure the bottom bar is visible above any Shopify wrappers */
