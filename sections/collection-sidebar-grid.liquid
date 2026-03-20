@@ -115,33 +115,20 @@
 
         {%- comment -%} COLLECTION TITLE {%- endcomment -%}
         {%- if section.settings.show_collection_title -%}
-          <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 1.5rem;">
-            <h1 class="sidebar-collection__title" style="
-              font-family: 'Playfair Display', serif;
-              font-weight: 900;
-              font-size: 2.4rem;
-              color: #4a3f2a;
-              text-transform: uppercase;
-              letter-spacing: 0.5px;
-              border-bottom: 2px solid #c2a974;
-              display: inline-block;
-              padding-bottom: 6px;
-              margin: 0;
-            ">
-              {{ collection.title }}
-            </h1>
-            <a href="{{ collection.url }}" class="sidebar-collection__title-arrow" title="View full {{ collection.title }} collection" style="
-              display: inline-flex;
-              align-items: center;
-              color: #c2a974;
-              transition: transform 0.2s ease, color 0.2s ease;
-              text-decoration: none;
-              flex-shrink: 0;
-              margin-bottom: 10px;
-            " onmouseover="this.style.transform='translateX(3px)'" onmouseout="this.style.transform='none'">
-              <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
-            </a>
-          </div>
+          <h1 class="sidebar-collection__title" style="
+            font-family: 'Playfair Display', serif;
+            font-weight: 900;
+            font-size: 2.4rem;
+            color: #4a3f2a;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            border-bottom: 2px solid #c2a974;
+            display: inline-block;
+            padding-bottom: 6px;
+            margin: 0 0 1.5rem;
+          ">
+            {{ collection.title }}
+          </h1>
         {%- endif -%}
 
         {%- comment -%} SORT BAR {%- endcomment -%}
