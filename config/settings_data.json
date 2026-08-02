@@ -147,11 +147,6 @@
     },
     "content_for_index": [],
     "blocks": {
-      "4918592460924562117": {
-        "type": "shopify://apps/optimonk-popup-cro-a-b-test/blocks/app-embed/0b488be1-fc0a-4fe6-8793-f2bef383dba8",
-        "disabled": false,
-        "settings": {}
-      },
       "6406956604159796213": {
         "type": "shopify://apps/smartseo/blocks/smartseo/7b0a6064-ca2e-4392-9a1d-8c43c942357b",
         "disabled": false,
@@ -179,24 +174,36 @@
           "air_reviews_json_ld_v2": "{% assign productTitle = product.title | default: '' %}{% assign productDesc = product.description | default: '' | escape | truncate: 150 %}{% assign productImage = product.featured_image | default: '' %}{% assign ratingValue = product.metafields.reviews.rating.value.rating | default: product.metafields.air_reviews_product.review_avg | default: 0 %}{% assign bestRating = product.metafields.reviews.rating.value.scale_max | default: 5 %}{% assign reviewCount = product.metafields.air_reviews_product.review_count | default: 0 %}{% assign worstRating = product.metafields.reviews.rating.value.scale_min | default: 1 %}{\n\"@context\": \"http://schema.org\",\n\"@type\": \"Product\",\n\"name\": \"{{ productTitle | escape }}\",\n\"description\": \"{{ productDesc | escape }}\",\n\"image\": \"{{ productImage | escape }}\",\n\"aggregateRating\": {\n  \"@type\": \"AggregateRating\",\n  \"ratingValue\": {{ ratingValue }},\n  \"bestRating\": {{ bestRating }},\n  \"reviewCount\": {{ reviewCount }}\n }{% if shop.metafields.air_reviews_has_ugc_content.data.value == true and product.metafields.air_reviews_product.data.value.reviews %}, \n  \"review\":[{% assign reviewsData = product.metafields.air_reviews_product.data.value.reviews %}\n  {% for review in reviewsData limit: 10 %}\n    {\n      \"@type\": \"Review\",\n      \"author\": {\n        \"@type\": \"Person\",\n        \"name\": \"{% if review.firstName %}{{ review.firstName | escape }}{% elsif review.lastName %}{{ review.lastName | escape }}{% else %}Anonymous{% endif %}\"\n      },\n      \"reviewRating\": {\n          \"@type\": \"Rating\",\n          \"bestRating\": {{ bestRating }},\n          \"ratingValue\": {{ review.rate | default: 0 }},\n          \"worstRating\": {{ worstRating }}\n      },\n      \"reviewBody\": \"{{ review.content | default: '' | escape }}\",\n      \"datePublished\": \"{{ review.createdAt | date: '%Y-%m-%d' }}\"\n    }{% unless forloop.last %},{% endunless %} \n  {% endfor %}]{% endif %}\n}"
         }
       },
-      "14060646107696862457": {
-        "type": "shopify://apps/judge-me-reviews/blocks/judgeme_core/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
-        "disabled": true,
-        "settings": {}
-      },
       "15683396631634586217": {
         "type": "shopify://apps/inbox/blocks/chat/841fc607-4181-4ad1-842d-e24d7f8bad6b",
         "disabled": false,
         "settings": {
+          "greeting_message": "Curious about making a purchase? Message us with any questions. We're happy to help!",
           "button_color": "#000000",
           "secondary_color": "#ffffff",
           "ternary_color": "#6a6a6a",
           "button_icon": "chat_bubble",
           "button_text": "contact",
           "button_horizontal_position": "bottom_right",
-          "button_vertical_position": "lowest",
-          "greeting_message": "Curious about making a purchase? Message us with any questions. We're happy to help!"
+          "button_vertical_position": "lowest"
         }
+      },
+      "14060646107696862457": {
+        "type": "shopify://apps/judge-me-reviews/blocks/judgeme_core/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+        "disabled": false,
+        "settings": {}
+      },
+      "13047258039897440615": {
+        "type": "shopify://apps/judge-me-reviews/blocks/cart_drawer_widget/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+        "disabled": false,
+        "settings": {
+          "widget_type": "review-widget"
+        }
+      },
+      "4918592460924562117": {
+        "type": "shopify://apps/optimonk-popup-cro-a-b-test/blocks/app-embed/0b488be1-fc0a-4fe6-8793-f2bef383dba8",
+        "disabled": false,
+        "settings": {}
       }
     },
     "color_schemes": {
