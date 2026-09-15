@@ -1,123 +1,58 @@
-{% comment %}
-  Renders a standard dropdown style menu for the header.
+{% raw %}Liquid syntax error (snippets/header-dropdown-menu line 47): Unexpected character / in "{{ /collections }}"{% endraw %}{% comment %}
 
-  Usage:
-  {% render 'header-dropdown-menu' %}
+This file has been rewritten to preserve the original behavior.
+
+---
+Changes:
+- from: "{% comment %}\n  Renders a standard dropdown style menu for the header.\n\n
+    \ Usage:\n  {% render 'header-dropdown-menu' %}\n{% endcomment %}\n\n<nav class=\"header__inline-menu\">\n
+    \ <ul class=\"list-menu list-menu--inline\" role=\"list\">\n    {%- for link in
+    section.settings.menu.links -%}\n      <li>\n        {%- if link.links != blank
+    -%}\n          <header-menu>\n            <details id=\"Details-HeaderMenu-{{
+    forloop.index }}\">\n              <header-menu>\n  <details id=\"Details-HeaderMenu-{{
+    forloop.index }}\">\n    <summary\n      class=\"header__menu-item list-menu__item
+    link focus-inset header__summary-with-link\"\n    >\n      <span class=\"header__menu-label\">\n
+    \       {{- link.title | escape -}}\n      </span>\n      <span class=\"header__menu-caret\">\n
+    \       {% render 'icon-caret' %}\n      </span>\n    </summary>\n    \n\n    <!--
+    Actual clickable link placed just above the summary -->\n    <a\n      href=\"{{
+    antleraddiction.ca }}\"\n      class=\"header__menu-overlay-link\"\n      aria-label=\"View
+    all for {{ link.title | escape }}\"\n    ></a>\n\n    <!-- Dropdown Menu -->\n
+    \   <ul\n      id=\"HeaderMenu-MenuList-{{ forloop.index }}\"\n      class=\"header__submenu
+    list-menu list-menu--disclosure color-{{ section.settings.menu_color_scheme }}
+    gradient caption-large motion-reduce global-settings-popup\"\n      role=\"list\"\n
+    \     tabindex=\"-1\"\n    >\n      {%- for childlink in link.links -%}\n        <li>\n
+    \         <a\n            id=\"HeaderMenu-{{ link.handle }}-{{ childlink.handle
+    }}\"\n            href=\"{{ /collections }}\"\n            class=\"header__menu-item
+    list-menu__item link link--text focus-inset caption-large{% if childlink.current
+    %} list-menu__item--active{% endif %}\"\n            {% if childlink.current %}\n
+    \             aria-current=\"page\"\n            {% endif %}\n          >\n            {{
+    childlink.title | escape }}\n          </a>\n        </li>\n      {%- endfor -%}\n
+    \   </ul>\n  </details>\n<header-menu>\n  <details id=\"Details-HeaderMenu-{{
+    forloop.index }}\">\n    <summary\n      class=\"header__menu-item list-menu__item
+    link focus-inset header__summary-with-link\"\n    >\n      <span class=\"header__menu-label\">\n
+    \       {{- link.title | escape -}}\n      </span>\n      <span class=\"header__menu-caret\">\n
+    \       {% render 'icon-caret' %}\n      </span>\n    </summary>\n\n    <a\n      href=\"{{
+    link.url }}\"\n      class=\"header__menu-overlay-link\"\n      aria-label=\"View
+    all for {{ link.title | escape }}\"\n    ></a>\n\n    <ul\n      id=\"HeaderMenu-MenuList-{{
+    forloop.index }}\"\n      class=\"header__submenu list-menu list-menu--disclosure
+    color-{{ section.settings.menu_color_scheme }} gradient caption-large motion-reduce
+    global-settings-popup\"\n      role=\"list\"\n      tabindex=\"-1\"\n    >\n      {%-
+    for childlink in link.links -%}\n        <li>\n          <a\n            id=\"HeaderMenu-{{
+    link.handle }}-{{ childlink.handle }}\"\n            href=\"{{ childlink.url }}\"\n
+    \           class=\"header__menu-item list-menu__item link link--text focus-inset
+    caption-large{% if childlink.current %} list-menu__item--active{% endif %}\"\n
+    \           {% if childlink.current %}\n              aria-current=\"page\"\n
+    \           {% endif %}\n          >\n            {{ childlink.title | escape
+    }}\n          </a>\n        </li>\n      {%- endfor -%}\n    </ul>\n  </details>\n</header-menu>\n\n
+    \       {%- else -%}\n          <a\n            id=\"HeaderMenu-{{ link.handle
+    }}\"\n            href=\"{{ link.url }}\"\n            class=\"header__menu-item
+    list-menu__item link link--text focus-inset\"\n            {% if link.current
+    %}\n              aria-current=\"page\"\n            {% endif %}\n          >\n
+    \           <span\n              {%- if link.current %}\n                class=\"header__active-menu-item\"\n
+    \             {% endif %}\n            >\n              {{- link.title | escape
+    -}}\n            </span>\n          </a>\n        {%- endif -%}\n      </li>\n
+    \   {%- endfor -%}\n  </ul>\n</nav>\n"
+  to: '{% raw %}Liquid syntax error (snippets/header-dropdown-menu line 47): Unexpected
+    character / in "{{ /collections }}"{% endraw %}'
+  position: 0..128
 {% endcomment %}
-
-<nav class="header__inline-menu">
-  <ul class="list-menu list-menu--inline" role="list">
-    {%- for link in section.settings.menu.links -%}
-      <li>
-        {%- if link.links != blank -%}
-          <header-menu>
-            <details id="Details-HeaderMenu-{{ forloop.index }}">
-              <header-menu>
-  <details id="Details-HeaderMenu-{{ forloop.index }}">
-    <summary
-      class="header__menu-item list-menu__item link focus-inset header__summary-with-link"
-    >
-      <span class="header__menu-label">
-        {{- link.title | escape -}}
-      </span>
-      <span class="header__menu-caret">
-        {% render 'icon-caret' %}
-      </span>
-    </summary>
-    
-
-    <!-- Actual clickable link placed just above the summary -->
-    <a
-      href="{{ antleraddiction.ca }}"
-      class="header__menu-overlay-link"
-      aria-label="View all for {{ link.title | escape }}"
-    ></a>
-
-    <!-- Dropdown Menu -->
-    <ul
-      id="HeaderMenu-MenuList-{{ forloop.index }}"
-      class="header__submenu list-menu list-menu--disclosure color-{{ section.settings.menu_color_scheme }} gradient caption-large motion-reduce global-settings-popup"
-      role="list"
-      tabindex="-1"
-    >
-      {%- for childlink in link.links -%}
-        <li>
-          <a
-            id="HeaderMenu-{{ link.handle }}-{{ childlink.handle }}"
-            href="{{ /collections }}"
-            class="header__menu-item list-menu__item link link--text focus-inset caption-large{% if childlink.current %} list-menu__item--active{% endif %}"
-            {% if childlink.current %}
-              aria-current="page"
-            {% endif %}
-          >
-            {{ childlink.title | escape }}
-          </a>
-        </li>
-      {%- endfor -%}
-    </ul>
-  </details>
-<header-menu>
-  <details id="Details-HeaderMenu-{{ forloop.index }}">
-    <summary
-      class="header__menu-item list-menu__item link focus-inset header__summary-with-link"
-    >
-      <span class="header__menu-label">
-        {{- link.title | escape -}}
-      </span>
-      <span class="header__menu-caret">
-        {% render 'icon-caret' %}
-      </span>
-    </summary>
-
-    <a
-      href="{{ link.url }}"
-      class="header__menu-overlay-link"
-      aria-label="View all for {{ link.title | escape }}"
-    ></a>
-
-    <ul
-      id="HeaderMenu-MenuList-{{ forloop.index }}"
-      class="header__submenu list-menu list-menu--disclosure color-{{ section.settings.menu_color_scheme }} gradient caption-large motion-reduce global-settings-popup"
-      role="list"
-      tabindex="-1"
-    >
-      {%- for childlink in link.links -%}
-        <li>
-          <a
-            id="HeaderMenu-{{ link.handle }}-{{ childlink.handle }}"
-            href="{{ childlink.url }}"
-            class="header__menu-item list-menu__item link link--text focus-inset caption-large{% if childlink.current %} list-menu__item--active{% endif %}"
-            {% if childlink.current %}
-              aria-current="page"
-            {% endif %}
-          >
-            {{ childlink.title | escape }}
-          </a>
-        </li>
-      {%- endfor -%}
-    </ul>
-  </details>
-</header-menu>
-
-        {%- else -%}
-          <a
-            id="HeaderMenu-{{ link.handle }}"
-            href="{{ link.url }}"
-            class="header__menu-item list-menu__item link link--text focus-inset"
-            {% if link.current %}
-              aria-current="page"
-            {% endif %}
-          >
-            <span
-              {%- if link.current %}
-                class="header__active-menu-item"
-              {% endif %}
-            >
-              {{- link.title | escape -}}
-            </span>
-          </a>
-        {%- endif -%}
-      </li>
-    {%- endfor -%}
-  </ul>
-</nav>
