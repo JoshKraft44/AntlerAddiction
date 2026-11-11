@@ -395,6 +395,8 @@
                   </volume-pricing>
                 {%- endif -%}
               </div>
+            {%- when 'bulk_tiers' -%}
+              {%- render 'bulk-tiers', product: product, block: block, section_id: section.id -%}
             {%- when 'popup' -%}
               <modal-opener
                 class="product-popup-modal__opener no-js-hidden quick-add-hidden"
@@ -807,6 +809,50 @@
       "type": "quantity_selector",
       "name": "t:sections.main-product.blocks.quantity_selector.name",
       "limit": 1
+    },
+    {
+      "type": "bulk_tiers",
+      "name": "Bulk quantity tiers",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Heading",
+          "default": "Buy more, save more"
+        },
+        {
+          "type": "text",
+          "id": "tiers",
+          "label": "Tiers",
+          "info": "quantity:percent off, comma separated. Must match the automatic discounts in admin.",
+          "default": "1:0, 3:15, 5:20, 10:25"
+        },
+        {
+          "type": "number",
+          "id": "popular_qty",
+          "label": "Most popular tier (quantity)",
+          "default": 3
+        },
+        {
+          "type": "text",
+          "id": "unit",
+          "label": "Unit name",
+          "default": "antler"
+        },
+        {
+          "type": "text",
+          "id": "unit_plural",
+          "label": "Unit name (plural)",
+          "default": "antlers"
+        },
+        {
+          "type": "text",
+          "id": "note",
+          "label": "Note",
+          "default": "Mix any sizes and species. Discount applies automatically in your cart."
+        }
+      ]
     },
     {
       "type": "variant_picker",

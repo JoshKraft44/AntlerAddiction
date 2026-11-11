@@ -1,0 +1,90 @@
+{% comment %}
+  Quantity break cards for the bulk antler listings.
+  Tiers come from the block as "qty:percent" pairs and have to match the automatic
+  discounts in Shopify admin, otherwise the cart price won't match what's shown here.
+
+  Accepts:
+  - product
+  - block
+  - section_id
+{% endcomment %}
+
+{%- liquid
+  assign variant = product.selected_or_first_available_variant
+  assign tiers = block.settings.tiers | remove: ' ' | split: ','
+  assign popular = block.settings.popular_qty
+  assign unit = block.settings.unit
+  assign units = block.settings.unit_plural
+-%}
+
+{{ 'component-bulk-tiers.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'bulk-tiers.js' | asset_url }}" defer="defer"></script>
+
+<bulk-tiers
+  class="bulk-tiers"
+  data-section="{{ section_id }}"
+  data-stock='{
+    {%- for v in product.variants -%}
+      "{{ v.id }}":{% if v.inventory_management == 'shopify' and v.inventory_policy == 'deny' %}{{ v.inventory_quantity }}{% else %}null{% endif %}{% unless forloop.last %},{% endunless %}
+    {%- endfor -%}
+  }'
+  data-variant="{{ variant.id }}"
+  {{ block.shopify_attributes }}
+>
+  <fieldset class="bulk-tiers__options">
+    <legend class="form__label">{{ block.settings.heading }}</legend>
+
+    {%- for tier in tiers -%}
+      {%- liquid
+        assign parts = tier | split: ':'
+        assign qty = parts[0] | plus: 0
+        assign pct = parts[1] | plus: 0
+        assign keep = 100 | minus: pct
+        assign full = variant.price | times: qty
+        assign total = full | times: keep | divided_by: 100.0 | round
+        assign each = total | divided_by: qty
+        assign out_of_stock = false
+        if variant.inventory_management == 'shopify' and variant.inventory_policy == 'deny' and variant.inventory_quantity < qty
+          assign out_of_stock = true
+        endif
+      -%}
+      <label class="bulk-tiers__card">
+        <input
+          type="radio"
+          name="bulk-tier-{{ section_id }}"
+          value="{{ qty }}"
+          data-pct="{{ pct }}"
+          {% if forloop.first %}checked{% endif %}
+          {% if out_of_stock %}disabled{% endif %}
+        >
+        <span class="bulk-tiers__info">
+          <span class="bulk-tiers__qty">
+            {{ qty }}
+            {% if qty == 1 %}{{ unit }}{% else %}{{ units }}{% endif %}
+            {%- if qty == popular -%}
+              <span class="bulk-tiers__badge">Most popular</span>
+            {%- endif -%}
+          </span>
+          {%- if pct > 0 -%}
+            <span class="bulk-tiers__save">Save {{ pct }}%</span>
+          {%- else -%}
+            <span class="bulk-tiers__save bulk-tiers__save--muted">Standard price</span>
+          {%- endif -%}
+        </span>
+        <span class="bulk-tiers__price">
+          <span class="bulk-tiers__total">
+            {%- if pct > 0 -%}
+              <s data-full>{{ full | money }}</s>
+            {%- endif -%}
+            <span data-total>{{ total | money }}</span>
+          </span>
+          <span class="bulk-tiers__each"><span data-each>{{ each | money }}</span> each</span>
+        </span>
+      </label>
+    {%- endfor -%}
+  </fieldset>
+
+  {%- if block.settings.note != blank -%}
+    <p class="bulk-tiers__note caption">{{ block.settings.note }}</p>
+  {%- endif -%}
+</bulk-tiers>
