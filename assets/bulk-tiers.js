@@ -43,14 +43,16 @@ if (!customElements.get('bulk-tiers')) {
         this.radios.forEach((radio) => {
           const qty = parseInt(radio.value);
           const pct = parseInt(radio.dataset.pct);
-          const full = variant.price * qty;
-          const total = Math.round((full * (100 - pct)) / 100);
+          const unitWas = Math.max(variant.price, variant.compare_at_price || 0);
+          const full = unitWas * qty;
+          const total = Math.round((variant.price * qty * (100 - pct)) / 100);
           const card = radio.closest('.bulk-tiers__card');
 
           card.querySelector('[data-total]').textContent = this.format(total);
           card.querySelector('[data-each]').textContent = this.format(Math.floor(total / qty));
           const fullEl = card.querySelector('[data-full]');
-          if (fullEl) fullEl.textContent = this.format(full);
+          fullEl.textContent = this.format(full);
+          fullEl.hidden = full <= total;
 
           radio.disabled = !variant.available || (stock != null && stock < qty);
         });

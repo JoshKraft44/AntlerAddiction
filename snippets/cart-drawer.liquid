@@ -113,6 +113,18 @@
 
                   <tbody role="rowgroup">
                     {%- for item in cart.items -%}
+                    {%- liquid
+                      # strike out compare-at sales as well as cart discounts
+                      assign was_price = item.original_price
+                      if item.variant.compare_at_price > was_price
+                        assign was_price = item.variant.compare_at_price
+                      endif
+                      assign was_line_price = was_price | times: item.quantity
+                      if item.original_line_price > was_line_price
+                        assign was_line_price = item.original_line_price
+                      endif
+                    -%}
+
                       <tr id="CartDrawer-Item-{{ item.index | plus: 1 }}" class="cart-item" role="row">
                         <td class="cart-item__media" role="cell" headers="CartDrawer-ColumnProductImage">
                           {% if item.image %}
@@ -138,13 +150,13 @@
                             {{- item.product.title | escape -}}
                           </a>
 
-                          {%- if item.original_price != item.final_price -%}
+                          {%- if was_price > item.final_price -%}
                             <div class="cart-item__discounted-prices">
                               <span class="visually-hidden">
                                 {{ 'products.product.price.regular_price' | t }}
                               </span>
                               <s class="cart-item__old-price product-option">
-                                {{- item.original_price | money -}}
+                                {{- was_price | money -}}
                               </s>
                               <span class="visually-hidden">
                                 {{ 'products.product.price.sale_price' | t }}
@@ -233,13 +245,13 @@
                           </div>
 
                           <div class="cart-item__price-wrapper">
-                            {%- if item.original_line_price != item.final_line_price -%}
+                            {%- if was_line_price > item.final_line_price -%}
                               <div class="cart-item__discounted-prices">
                                 <span class="visually-hidden">
                                   {{ 'products.product.price.regular_price' | t }}
                                 </span>
                                 <s class="cart-item__old-price price price--end">
-                                  {{ item.original_line_price | money }}
+                                  {{ was_line_price | money }}
                                 </s>
                                 <span class="visually-hidden">
                                   {{ 'products.product.price.sale_price' | t }}

@@ -40,8 +40,12 @@
         assign qty = parts[0] | plus: 0
         assign pct = parts[1] | plus: 0
         assign keep = 100 | minus: pct
-        assign full = variant.price | times: qty
-        assign total = full | times: keep | divided_by: 100.0 | round
+        assign unit_was = variant.price
+        if variant.compare_at_price > variant.price
+          assign unit_was = variant.compare_at_price
+        endif
+        assign full = unit_was | times: qty
+        assign total = variant.price | times: qty | times: keep | divided_by: 100.0 | round
         assign each = total | divided_by: qty
         assign out_of_stock = false
         if variant.inventory_management == 'shopify' and variant.inventory_policy == 'deny' and variant.inventory_quantity < qty
@@ -73,9 +77,7 @@
         </span>
         <span class="bulk-tiers__price">
           <span class="bulk-tiers__total">
-            {%- if pct > 0 -%}
-              <s data-full>{{ full | money }}</s>
-            {%- endif -%}
+            <s data-full{% if full <= total %} hidden{% endif %}>{{ full | money }}</s>
             <span data-total>{{ total | money }}</span>
           </span>
           <span class="bulk-tiers__each"><span data-each>{{ each | money }}</span> each</span>
